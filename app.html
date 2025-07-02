@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crear mi Currículum</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Crear mi Currículum</h1>
+    <form id="cv-form">
+      <label>Nombre completo:<input type="text" name="nombre" required /></label>
+      <label>Email:<input type="email" name="email" required /></label>
+      <label>Teléfono:<input type="tel" name="telefono" /></label>
+      <label>Ciudad:<input type="text" name="ciudad" /></label>
+      <label>País:<input type="text" name="pais" /></label>
+      <label>Foto de Perfil:<input type="file" name="foto" accept="image/*" /></label>
+      <label>Perfil profesional:<textarea name="perfil" rows="3"></textarea></label>
+      <label>Experiencia laboral:<textarea name="experiencia" rows="4"></textarea></label>
+      <label>Educación:<textarea name="educacion" rows="3"></textarea></label>
+      <label>Competencias:<textarea name="habilidades" rows="3"></textarea></label> <label>Idiomas:<textarea name="idiomas" rows="2"></textarea></label>
+      <label>Formación Adicional (Opcional):<textarea name="formacionAdicional" rows="3"></textarea></label> <div class="botones">
+        <button type="submit">Generar Currículum</button>
+        <button type="button" id="descargar-pdf" style="display: none;">Descargar como PDF</button>
+      </div>
+    </form>
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
