@@ -1,3 +1,4 @@
+/* --- CSS Existente --- */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f4f4f4;
@@ -5,7 +6,8 @@ body {
   color: #333;
 }
 
-.form-container {
+/* Nota: Cambié .form-container por .container para que coincida con app.html */
+.container { 
   background: white;
   max-width: 800px;
   margin: auto;
@@ -26,6 +28,8 @@ input, textarea {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  /* CAMBIO NECESARIO: Asegurar que el padding no rompa el ancho del 100% */
+  box-sizing: border-box;
 }
 
 button {
@@ -88,4 +92,44 @@ button:hover {
   font-size: 14px;
   line-height: 1.6;
   white-space: pre-wrap;
+}
+
+/* ==================================== */
+/* --- CAMBIOS JUSTOS Y NECESARIOS PARA app.html --- */
+/* ==================================== */
+
+/* 1. Reglas para los grupos de formulario (disposición vertical) */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Fuerza que etiqueta e input se apilen */
+    margin-bottom: 15px; 
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el campo */
+}
+
+/* 2. Contenedor de botones y responsividad */
+.botones {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+    margin-top: 20px;
+    /* Por defecto, alinea los botones a la derecha en escritorio */
+    justify-content: flex-end; 
+}
+
+/* Para asegurar que los botones ocupen todo el ancho en móvil y se apilen */
+@media (max-width: 600px) {
+    .botones {
+        flex-direction: column; /* Apilar los botones verticalmente */
+    }
+    .botones button {
+        width: 100%; /* Ocupar todo el ancho en móvil */
+    }
+}
+
+/* 3. Asegurar que el padding del body no cause scroll horizontal en móviles */
+body {
+    padding: 20px 10px; /* Reduce el padding lateral en general */
 }
