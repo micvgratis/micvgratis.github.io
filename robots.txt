@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://micvgratis.github.io/sitemap.xml
