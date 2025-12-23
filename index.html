@@ -80,6 +80,13 @@
             color: #4B5563; /* Gris */
             font-weight: 400;
         }
+        /* Eliminar tics de la sección de errores específicos */
+        .error-list li::before {
+            content: none !important;
+        }
+        .error-list li {
+            padding-left: 0 !important;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -276,7 +283,7 @@
                 <!-- Errores Comunes -->
                 <div class="bg-red-50 p-8 rounded-2xl shadow-md border-l-8 border-red-500">
                     <h3 class="text-2xl font-bold text-red-700 mb-4">⚠️ Errores que arruinan tu CV al instante</h3>
-                    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3">
+                    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 error-list">
                         <li class="flex items-center text-red-800">❌ Faltas de ortografía (revisa dos veces antes de descargar).</li>
                         <li class="flex items-center text-red-800">❌ Formatos PDF pesados que no pasan los filtros ATS.</li>
                         <li class="flex items-center text-red-800">❌ Incluir información irrelevante de hace más de 15 años.</li>
