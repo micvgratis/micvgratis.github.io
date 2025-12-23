@@ -28,24 +28,24 @@
     }
     </script>
 
-    <!-- Marcado FAQ para fragmentos enriquecidos en Google -->
+    <!-- Marcado FAQ para fragmentos enriquecidos en Google - AJUSTADO PARA PREGUNTAS REALES -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [{
         "@type": "Question",
-        "name": "¿Es realmente gratuito o hay que pagar después?",
+        "name": "¿Hay que pagar después de crear el CV?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Es 100% gratuito. A diferencia de otras webs que te piden pagar 2€ o 15€ al finalizar, en MiCVGratis puedes diseñar y descargar tu PDF sin ningún coste oculto."
+          "text": "No. Es 100% gratuito. A diferencia de otras webs que te piden pagar 2€ o 15€ al finalizar para descargar el archivo, en MiCVGratis el PDF es gratis desde el principio hasta el final."
         }
       }, {
         "@type": "Question",
-        "name": "¿Cómo se guardan mis datos personales?",
+        "name": "¿Es seguro poner mis datos personales?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tu privacidad es sagrada. Los datos se almacenan en el almacenamiento local de tu navegador (localStorage). Nada se envía a nuestros servidores."
+          "text": "Es totalmente seguro. Tus datos no se envían a ningún servidor, se quedan guardados solo en tu navegador (localStorage), garantizando privacidad total."
         }
       }]
     }
@@ -74,14 +74,6 @@
             color: #10B981; /* Esmeralda/Verde para checkmark */
             font-weight: 700;
         }
-        /* Clase específica para evitar el checkmark en la sección de errores */
-        .no-check li::before {
-            content: none !important;
-        }
-        .no-check li {
-            padding-left: 0 !important;
-        }
-
         /* Ajuste para los li dentro de un li (sublistas) */
         .complete-guide ul ul li::before {
             content: '-';
@@ -105,9 +97,9 @@
         }
     </script>
     
-    <!-- Metadatos SEO OPTIMIZADOS (Títulos con mayor CTR para subir de posición) -->
-    <title>CV Gratis | Crear Currículum Vitae en PDF Online (Sin Registro 2025)</title>
-    <meta name="description" content="¿Buscas cómo crear un CV gratis profesional? Nuestra herramienta online te permite descargar tu currículum en PDF sin registro y sin pagos. ¡Crea tu CV gratis hoy!">
+    <!-- Metadatos SEO OPTIMIZADOS (Título irresistible y Meta con Emoji para CTR) -->
+    <title>CV Gratis | Crea tu Currículum en PDF (SIN Registro y SIN Pagos)</title>
+    <meta name="description" content="🛑 ¡No pagues por tu CV! Crea tu currículum gratis profesional en PDF ahora mismo. Sin registros, sin suscripciones y sin pagos ocultos. ¡Empieza ya!">
     <meta name="keywords" content="cv gratis, crear cv gratis, currículum vitae pdf, hacer currículum online, plantillas cv gratis, cv sin registro, micvgratis">
     <link rel="canonical" href="https://micvgratis.github.io/">
     
@@ -127,19 +119,20 @@
     <!-- HEADER Y HERO SECTION -->
     <header class="bg-white shadow-xl border-b border-gray-100">
         <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
-            <!-- H1 OPTIMIZADO PARA PALABRAS CLAVE PRINCIPALES -->
-            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-primary mb-6 leading-tight">
-                Crear <span class="text-secondary underline">CV Gratis</span> y Profesional en PDF Online
+            <!-- H1 SIMPLIFICADO Y LIMPIO PARA ESCANEO RÁPIDO -->
+            <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black text-primary mb-6 leading-tight tracking-tight">
+                Tu <span class="text-secondary underline decoration-8">CV Profesional Gratis</span>
             </h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Tu herramienta sencilla y <strong>gratuita</strong> para diseñar un currículum vitae que <strong>realmente impresione</strong> a los reclutadores en solo minutos. Sin suscripciones, sin registros y optimizado para 2025.
+            <p class="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium">
+                Diseña y descarga tu currículum vitae en PDF en solo minutos. Sin suscripciones, sin registros y <span class="text-secondary font-bold underline">100% gratis</span>.
             </p>
             <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="app.html" title="Empezar a crear currículum" class="inline-block bg-secondary hover:bg-green-600 text-white font-extrabold text-2xl py-5 px-12 rounded-2xl shadow-2xl transform transition duration-300 hover:scale-105">
-                    ¡Hacer mi CV Gratis Ahora!
+                <!-- BOTÓN CON PRECIO VISUAL (0€) -->
+                <a href="app.html" title="Empezar a crear currículum" class="inline-block bg-secondary hover:bg-green-600 text-white font-black text-2xl sm:text-3xl py-6 px-14 rounded-2xl shadow-2xl transform transition duration-300 hover:scale-105">
+                    Empezar mi CV Gratis
                 </a>
             </div>
-            <p class="mt-4 text-sm text-gray-500 italic">Descarga instantánea sin dejar tu correo electrónico.</p>
+            <p class="mt-4 text-sm text-gray-500 font-semibold uppercase tracking-wider">⚡ Descarga instantánea sin dejar tu email</p>
         </div>
     </header>
 
@@ -280,14 +273,14 @@
                     </div>
                 </div>
 
-                <!-- Errores Comunes - Actualizado para quitar los tics verdes -->
+                <!-- Errores Comunes -->
                 <div class="bg-red-50 p-8 rounded-2xl shadow-md border-l-8 border-red-500">
                     <h3 class="text-2xl font-bold text-red-700 mb-4">⚠️ Errores que arruinan tu CV al instante</h3>
-                    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 no-check">
-                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Faltas de ortografía (revisa dos veces antes de descargar).</li>
-                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Formatos PDF pesados que no pasan los filtros ATS.</li>
-                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Incluir información irrelevante de hace más de 15 años.</li>
-                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Fotos en baja calidad o con fondos informales.</li>
+                    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3">
+                        <li class="flex items-center text-red-800">❌ Faltas de ortografía (revisa dos veces antes de descargar).</li>
+                        <li class="flex items-center text-red-800">❌ Formatos PDF pesados que no pasan los filtros ATS.</li>
+                        <li class="flex items-center text-red-800">❌ Incluir información irrelevante de hace más de 15 años.</li>
+                        <li class="flex items-center text-red-800">❌ Fotos en baja calidad o con fondos informales.</li>
                     </ul>
                 </div>
 
@@ -323,7 +316,7 @@
             <div class="space-y-6">
                 <details class="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 cursor-pointer">
                     <summary class="font-bold text-xl text-primary flex justify-between items-center list-none">
-                        ¿Es realmente gratuito o hay que pagar después?
+                        ¿Hay que pagar después de crear el CV?
                         <span class="group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <p class="mt-4 text-gray-600 leading-relaxed">
@@ -362,13 +355,13 @@
 
         <!-- CTA FINAL -->
         <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 mb-16">
-            <h2 class="text-3xl font-extrabold text-gray-800 mb-6">
-                Consigue hoy mismo el trabajo que te mereces
+            <h2 class="text-3xl font-extrabold text-gray-800 mb-6 uppercase">
+                Consigue el trabajo que te mereces hoy mismo
             </h2>
-            <a href="app.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-black text-3xl py-6 px-16 rounded-3xl shadow-2xl transform transition duration-300 hover:scale-110">
-                ¡CREAR CV GRATIS AHORA!
+            <a href="app.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-black text-3xl py-7 px-16 rounded-3xl shadow-2xl transform transition duration-300 hover:scale-110">
+                ¡CREAR MI CV GRATIS!
             </a>
-            <p class="mt-6 text-gray-500">Únete a más de 10,000 usuarios que ya confían en MiCVGratis mensualmente.</p>
+            <p class="mt-6 text-gray-500 font-medium italic">Únete a más de 10,000 usuarios que ya confían en MiCVGratis mensualmente.</p>
         </section>
     </main>
 
