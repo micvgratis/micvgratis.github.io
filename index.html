@@ -388,5 +388,30 @@
             <p class="text-xs text-gray-600">&copy; 2025 MiCVGratis. Todos los derechos reservados. Diseñado para maximizar tu empleabilidad y éxito profesional.</p>
         </div>
     </footer>
+
+    <!-- SCRIPT DE REGISTRO DEL SERVICE WORKER CON PROTECCIÓN PARA ENTORNO DE EDICIÓN -->
+    <script>
+      // Solo intentamos registrar el SW si estamos en un entorno seguro (HTTPS) 
+      // y no en un blob/iframe de previsualización que rompa el protocolo.
+      if ('serviceWorker' in navigator && window.location.protocol === 'https:' && !window.location.host.includes('usercontent.goog')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(reg => {
+            reg.onupdatefound = () => {
+              const installingWorker = reg.installing;
+              if (installingWorker) {
+                installingWorker.onstatechange = () => {
+                  if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // Cuando se instala una nueva versión, recarga la página automáticamente
+                    window.location.reload();
+                  }
+                };
+              }
+            };
+          }).catch(err => {
+            console.warn('Service Worker registration skipped or failed:', err);
+          });
+        });
+      }
+    </script>
 </body>
 </html>
