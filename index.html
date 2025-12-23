@@ -74,6 +74,14 @@
             color: #10B981; /* Esmeralda/Verde para checkmark */
             font-weight: 700;
         }
+        /* Clase específica para evitar el checkmark en la sección de errores */
+        .no-check li::before {
+            content: none !important;
+        }
+        .no-check li {
+            padding-left: 0 !important;
+        }
+
         /* Ajuste para los li dentro de un li (sublistas) */
         .complete-guide ul ul li::before {
             content: '-';
@@ -272,14 +280,14 @@
                     </div>
                 </div>
 
-                <!-- Errores Comunes -->
+                <!-- Errores Comunes - Actualizado para quitar los tics verdes -->
                 <div class="bg-red-50 p-8 rounded-2xl shadow-md border-l-8 border-red-500">
                     <h3 class="text-2xl font-bold text-red-700 mb-4">⚠️ Errores que arruinan tu CV al instante</h3>
-                    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3">
-                        <li class="flex items-center text-red-800">❌ Faltas de ortografía (revisa dos veces antes de descargar).</li>
-                        <li class="flex items-center text-red-800">❌ Formatos PDF pesados que no pasan los filtros ATS.</li>
-                        <li class="flex items-center text-red-800">❌ Incluir información irrelevante de hace más de 15 años.</li>
-                        <li class="flex items-center text-red-800">❌ Fotos en baja calidad o con fondos informales.</li>
+                    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 no-check">
+                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Faltas de ortografía (revisa dos veces antes de descargar).</li>
+                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Formatos PDF pesados que no pasan los filtros ATS.</li>
+                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Incluir información irrelevante de hace más de 15 años.</li>
+                        <li class="flex items-start text-red-800"><span class="mr-2">❌</span> Fotos en baja calidad o con fondos informales.</li>
                     </ul>
                 </div>
 
