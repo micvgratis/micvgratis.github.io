@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /private/
-
-Sitemap: https://www.google.com/search?q=https://micvgratis.github.io/sitemap.xml
-Sitemap: https://www.google.com/search?q=https://micvgratis.github.io/sitemap.txt
+Sitemap: https://micvgratis.github.io/sitemap.xml
+Sitemap: https://micvgratis.github.io/sitemap.txt
+User-agent: Mediapartners-Google
+Allow: /
