@@ -6,7 +6,7 @@
 
 // 1. Nombre de la caché. 
 // TRUCO: Cambia el número (v1, v2, v3...) cuando quieras que TODOS vean los cambios al instante.
-const CACHE_NAME = 'micvgratis-cache-v4';
+const CACHE_NAME = 'micvgratis-cache-v5';
 
 const ASSETS_TO_CACHE = [
     '/',
