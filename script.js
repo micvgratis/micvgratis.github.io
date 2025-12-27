@@ -26,7 +26,6 @@ document.getElementById('cv-form').addEventListener('submit', async function (ev
     });
   }
 
-  // Se mantiene la previsualización en texto
   const resultado = `
 Nombre: ${datos.nombre}
 Email: ${datos.email}
@@ -63,29 +62,28 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
   const doc = new jsPDF();
   const datos = window.__cvData;
   
-  // Capturamos el diseño del selector (si no existe, por defecto es clasico)
-  const disenoElement = document.getElementById('diseno-cv');
-  const diseno = disenoElement ? disenoElement.value : 'clasico';
+  // 1. Detección segura del diseño
+  const selector = document.getElementById('diseno-cv');
+  const diseno = selector ? selector.value : 'clasico';
   
   let margin = 20;
   let y = margin;
   const maxWidth = 170;
 
-  // --- CONFIGURACIÓN DE COLORES SEGÚN DISEÑO ---
-  let colorPrimario = [0, 51, 102]; // Azul oscuro (Clásico)
+  // 2. Definición de colores (corregido para evitar fallos de libreria)
+  let r = 0, g = 51, b = 102; // Clásico (Azul oscuro)
   
   if (diseno === 'moderno') {
-    colorPrimario = [37, 99, 235]; // Azul vibrante
+    r = 37; g = 99; b = 235; // Azul Moderno
   } else if (diseno === 'minimalista') {
-    colorPrimario = [0, 0, 0];    // Negro
+    r = 0; g = 0; b = 0;     // Negro
   }
 
-  // ENCABEZADO (HEADER)
+  // ENCABEZADO
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
-  doc.setTextColor(colorPrimario[0], colorPrimario[1], colorPrimario[2]);
+  doc.setTextColor(r, g, b); // Aplicación directa de R, G, B
   
-  // Posicionamiento del nombre
   if (diseno === 'moderno') {
     doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
   } else {
@@ -94,12 +92,12 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
 
   y += 8;
   doc.setFontSize(11);
-  doc.setTextColor(80);
+  doc.setTextColor(80, 80, 80);
   doc.setFont('helvetica', 'normal');
 
   let contactInfo = `Email: ${datos.email} | Teléfono: ${datos.telefono}`;
   if (datos.ciudad || datos.pais) {
-    contactInfo += ` | ${datos.ciudad}${datos.ciudad && datos.pais ? ', ' : ''}${datos.pais}`;
+    contactInfo += ` | ${datos.ciudad || ''}${datos.ciudad && datos.pais ? ', ' : ''}${datos.pais || ''}`;
   }
 
   if (diseno === 'moderno') {
@@ -108,25 +106,21 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     doc.text(contactInfo, margin, y);
   }
 
-  // Añadir la foto de perfil si existe
+  // FOTO
   if (datos.foto) {
     try {
-      const imgWidth = 30;
-      const imgHeight = 30;
-      // En moderno la foto va a la izquierda, en el resto a la derecha
-      const xFoto = diseno === 'moderno' ? margin : doc.internal.pageSize.width - margin - imgWidth;
-      doc.addImage(datos.foto, 'JPEG', xFoto, margin - 10, imgWidth, imgHeight);
-    } catch (e) {
-      console.error("Error al añadir la imagen:", e);
-    }
+      const imgSize = 30;
+      const xFoto = (diseno === 'moderno') ? margin : doc.internal.pageSize.width - margin - imgSize;
+      doc.addImage(datos.foto, 'JPEG', xFoto, margin - 10, imgSize, imgSize);
+    } catch (e) { console.error("Error foto:", e); }
   }
 
   y += 10;
-  doc.setDrawColor(200);
+  doc.setDrawColor(200, 200, 200);
   doc.line(margin, y, 190, y);
   y += 10;
 
-  // FUNCIÓN DE SECCIONES (Adaptada para los estilos)
+  // FUNCIÓN DE SECCIONES
   function addSection(title, text, isBullet = false) {
     if (!text || !text.trim()) return;
 
@@ -137,27 +131,21 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
 
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(14);
-    doc.setTextColor(colorPrimario[0], colorPrimario[1], colorPrimario[2]);
+    doc.setTextColor(r, g, b); // Usamos el color del diseño
     
-    // Decoración visual simple según diseño
-    if (diseno === 'clasico') {
-        doc.text(title.toUpperCase(), margin, y);
-    } else {
-        doc.text(title, margin, y);
-    }
-    
+    doc.text(diseno === 'clasico' ? title.toUpperCase() : title, margin, y);
     y += 7;
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(11);
-    doc.setTextColor(50);
+    doc.setTextColor(50, 50, 50);
 
     if (isBullet) {
       const lines = text.split('\n');
       lines.forEach(line => {
         if (line.trim()) {
-          const char = diseno === 'minimalista' ? "- " : "• ";
-          const splitLine = doc.splitTextToSize(`${char}${line.trim()}`, maxWidth);
+          const bullet = diseno === 'minimalista' ? "- " : "• ";
+          const splitLine = doc.splitTextToSize(bullet + line.trim(), maxWidth);
           doc.text(splitLine, margin, y);
           y += splitLine.length * 6;
         }
@@ -170,7 +158,6 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     }
   }
 
-  // Llamadas a las secciones
   addSection('Perfil Profesional', datos.perfil);
   addSection('Experiencia Laboral', datos.experiencia, true);
   addSection('Educación', datos.educacion, true);
