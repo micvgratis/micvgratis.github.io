@@ -83,7 +83,14 @@
                 <label for="formacionAdicional">Formación Adicional (Opcional):</label>
                 <textarea id="formacionAdicional" name="formacionAdicional" rows="3"></textarea>
             </div>
-            
+            <div class="form-group">
+    <label for="diseno-cv">Elegir Diseño de CV:</label>
+    <select id="diseno-cv" name="diseno-cv" style="width: 100%; padding: 12px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        <option value="clasico">📜 Clásico (Elegante y Tradicional)</option>
+        <option value="moderno" selected>🎨 Moderno (Colorido y Actual)</option>
+        <option value="minimalista">☁️ Minimalista (Limpio y Espaciado)</option>
+    </select>
+</div>
             <div class="botones">
                 <button type="submit">Generar Currículum</button>
                 <button type="button" id="descargar-pdf" style="display: none;">Descargar como PDF</button>
