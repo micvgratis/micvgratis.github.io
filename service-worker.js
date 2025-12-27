@@ -6,7 +6,7 @@
 
 // 1. Nombre de la caché. 
 // TRUCO: Incrementa este número (v8, v9, v10...) cada vez que subas cambios a GitHub.
-const CACHE_NAME = 'micvgratis-cache-v8.1';
+const CACHE_NAME = 'micvgratis-cache-v9.1';
 
 const ASSETS_TO_CACHE = [
     '/',
