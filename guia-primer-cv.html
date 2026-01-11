@@ -4,64 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cómo hacer tu primer CV sin experiencia | MiCVGratis</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="description" content="Guía paso a paso para crear un currículum impactante aunque no tengas experiencia laboral previa.">
-    <link rel="stylesheet" href="style.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cómo hacer tu primer CV sin experiencia",
+      "description": "Consejos y estrategias para destacar en el mercado laboral sin tener experiencia previa.",
+      "author": {
+        "@type": "Organization",
+        "name": "MiCVGratis"
+      }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .contenido-guia { max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; font-family: sans-serif; }
-        .contenido-guia h1 { color: #003366; font-size: 2.2rem; margin-bottom: 20px; border-bottom: 3px solid #007BFF; padding-bottom: 10px; }
-        .contenido-guia h2 { color: #007BFF; margin-top: 30px; }
-        .consejito { background: #fff4e5; border-left: 5px solid #ffa500; padding: 15px; margin: 20px 0; border-radius: 4px; }
-        .lista-check { list-style: none; padding: 0; }
-        .lista-check li::before { content: "✅ "; margin-right: 10px; }
-        .btn-crear { display: block; text-align: center; background: #007BFF; color: white; padding: 18px; text-decoration: none; border-radius: 8px; font-weight: bold; margin-top: 40px; font-size: 1.2rem; }
-        .btn-crear:hover { background: #0056b3; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-    <nav style="padding: 15px; background: #003366; text-align: center;">
-        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🏠 Volver a MiCVGratis</a>
+    <nav class="bg-[#003366] p-4 text-center">
+        <a href="index.html" class="text-white font-bold hover:text-green-400 transition">🏠 Volver a MiCVGratis</a>
     </nav>
 
-    <article class="contenido-guia">
-        <h1>Cómo hacer tu primer CV sin experiencia</h1>
-        
-        <p>Muchos jóvenes piensan: <i>"No puedo hacer un CV porque nunca he trabajado"</i>. <b>¡Error!</b> Las empresas no solo buscan años de experiencia, buscan <b>potencial, ganas y habilidades</b>.</p>
+    <article class="max-w-4xl mx-auto py-12 px-6">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-[#2563EB] mb-4">
+                Cómo hacer tu primer CV sin experiencia
+            </h1>
+            <p class="text-xl text-gray-600 font-medium">No cuentes tu historia, vende tu potencial y tus ganas.</p>
+        </header>
 
-        <h2>1. Potencia tu formación</h2>
-        <p>Si no tienes trabajos previos, tu educación es tu mayor activo. No pongas solo el título, añade:</p>
-        <ul class="lista-check">
-            <li>Proyectos escolares destacados.</li>
-            <li>Logros académicos o matrículas de honor.</li>
-            <li>Cursos online y certificaciones (Coursera, Udemy, etc.).</li>
-        </ul>
+        <section class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 mb-10">
+            <p class="text-lg italic">"Muchos jóvenes piensan: No puedo hacer un CV porque nunca he trabajado. <strong>¡Error!</strong> Las empresas no solo buscan años de experiencia, buscan potencial y habilidades."</p>
+        </section>
 
-        <div class="consejito">
-            <strong>💡 Truco:</strong> Si has hecho un voluntariado o has ayudado en el negocio familiar, ¡eso cuenta como experiencia! Ponlo.
+        <div class="space-y-12">
+            <section>
+                <h2 class="text-2xl font-bold text-[#10B981] mb-4 flex items-center">
+                    <span class="bg-green-100 p-2 rounded-lg mr-3">1</span> Potencia tu formación
+                </h2>
+                <p class="mb-4 text-gray-600">Si no tienes trabajos previos, tu educación es tu mayor activo. No pongas solo el título, añade:</p>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <li class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm">✅ Proyectos escolares destacados.</li>
+                    <li class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm">✅ Logros académicos o menciones.</li>
+                    <li class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm">✅ Cursos online (Udemy, Coursera).</li>
+                    <li class="bg-white p-3 rounded-xl border border-gray-100 shadow-sm">✅ Certificaciones técnicas.</li>
+                </ul>
+                <div class="mt-4 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-xl">
+                    <strong>💡 Truco:</strong> Si has hecho un voluntariado o has ayudado en el negocio familiar, ¡eso cuenta como experiencia!
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-[#10B981] mb-4 flex items-center">
+                    <span class="bg-green-100 p-2 rounded-lg mr-3">2</span> Enfócate en tus "Soft Skills"
+                </h2>
+                <p class="text-gray-600 mb-4">Como no tienes experiencia técnica profunda, destaca tu personalidad. Las empresas aman a los jóvenes con:</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-bold">Aprendizaje rápido</span>
+                    <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-bold">Trabajo en equipo</span>
+                    <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-bold">Responsabilidad</span>
+                    <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-bold">Resolución de problemas</span>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">3. Crea un Objetivo Profesional potente</h2>
+                <p class="text-gray-600 mb-4 font-serif italic text-lg leading-relaxed">
+                    "Estudiante de Administración con gran capacidad de organización busca su primera oportunidad para aplicar sus conocimientos y aportar energía positiva al equipo."
+                </p>
+                <p class="text-sm text-blue-600">Nota: En lugar de pedir, explica qué puedes ofrecer tú.</p>
+            </section>
         </div>
 
-        <h2>2. Enfócate en tus "Habilidades Blandas" (Soft Skills)</h2>
-        <p>Como no tienes experiencia técnica, destaca tu personalidad. Las empresas aman a los jóvenes con:</p>
-        <ul>
-            <li>Capacidad de aprendizaje rápido.</li>
-            <li>Trabajo en equipo.</li>
-            <li>Puntualidad y responsabilidad.</li>
-            <li>Resolución de problemas.</li>
-        </ul>
-
-        <h2>3. Crea un Objetivo Profesional potente</h2>
-        <p>En lugar de decir lo que quieres, di lo que puedes ofrecer. 
-            <br><i>"Estudiante de Administración con gran capacidad de organización busca su primera oportunidad para aplicar sus conocimientos y aportar energía positiva al equipo."</i></p>
-
-        <h2>4. El diseño importa</h2>
-        <p>Para un primer CV, lo mejor es un diseño <b>limpio y ordenado</b>. No intentes rellenar 3 páginas; una sola página bien aprovechada es mucho mejor que tres con "relleno".</p>
-
-        <div class="consejito">
-            <strong>🚀 Dato:</strong> En nuestra herramienta, la plantilla <b>Minimalista</b> es perfecta para perfiles sin experiencia porque hace que la información se vea equilibrada.
+        <div class="mt-16 text-center bg-gray-900 text-white p-10 rounded-3xl">
+            <h2 class="text-2xl font-bold mb-4 italic text-green-400">¿Listo para dar el primer paso?</h2>
+            <p class="mb-8 text-gray-300 text-lg">Nuestra plantilla <strong>Minimalista</strong> es la favorita de los estudiantes porque optimiza el espacio perfectamente.</p>
+            <a href="app.html" class="inline-block bg-[#10B981] hover:bg-green-600 text-white font-black text-xl py-4 px-10 rounded-2xl transition transform hover:scale-105 shadow-xl">
+                Crear mi primer CV profesional
+            </a>
         </div>
-
-        <a href="app.html" class="btn-crear">Crear mi primer CV profesional ahora</a>
     </article>
+
+    <footer class="bg-gray-900 text-white py-10 text-center mt-12 border-t border-gray-800">
+        <p class="text-sm">© 2025 MiCVGratis - Tu éxito es nuestro objetivo.</p>
+    </footer>
 
 </body>
 </html>
