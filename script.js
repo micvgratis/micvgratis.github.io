@@ -1,52 +1,15 @@
-// 1. DICCIONARIO DE TRADUCCIONES
+// 1. DICCIONARIO DE TRADUCCIONES (Igual que lo tienes)
 const diccionarios = {
-    es: {
-        perfil: "Perfil Profesional",
-        experiencia: "Experiencia Laboral",
-        educacion: "Educación",
-        habilidades: "Competencias",
-        idiomas: "Idiomas",
-        adicional: "Formación Adicional"
-    },
-    en: {
-        perfil: "Professional Profile",
-        experiencia: "Work Experience",
-        educacion: "Education",
-        habilidades: "Skills",
-        idiomas: "Languages",
-        adicional: "Additional Training"
-    },
-    fr: {
-        perfil: "Profil Professionnel",
-        experiencia: "Expérience Professionnelle",
-        educacion: "Éducation",
-        habilidades: "Compétences",
-        idiomas: "Langues",
-        adicional: "Formation Complémentaire"
-    },
-    de: {
-        perfil: "Berufliches Profil",
-        experiencia: "Berufserfahrung",
-        educacion: "Ausbildung",
-        habilidades: "Fähigkeiten",
-        idiomas: "Sprachen",
-        adicional: "Zusatzqualifikationen"
-    },
-    it: {
-        perfil: "Profilo Professionale",
-        experiencia: "Esperienza Lavorativa",
-        educacion: "Istruzione",
-        habilidades: "Competenze",
-        idiomas: "Lingue",
-        adicional: "Formazione Aggiuntiva"
-    }
+    es: { perfil: "Perfil Profesional", experiencia: "Experiencia Laboral", educacion: "Educación", habilidades: "Competencias", idiomas: "Idiomas", adicional: "Formación Adicional" },
+    en: { perfil: "Professional Profile", experiencia: "Work Experience", educacion: "Education", habilidades: "Skills", idiomas: "Languages", adicional: "Additional Training" },
+    fr: { perfil: "Profil Professionnel", experiencia: "Expérience Professionnelle", educacion: "Éducation", habilidades: "Compétences", idiomas: "Langues", adicional: "Formation Complémentaire" },
+    de: { perfil: "Berufliches Profil", experiencia: "Berufserfahrung", educacion: "Ausbildung", habilidades: "Fähigkeiten", idiomas: "Sprachen", adicional: "Zusatzqualifikationen" },
+    it: { perfil: "Profilo Professionale", experiencia: "Esperienza Lavorativa", educacion: "Istruzione", habilidades: "Competenze", idiomas: "Lingue", adicional: "Formazione Aggiuntiva" }
 };
 
 document.getElementById('cv-form').addEventListener('submit', async function (event) {
     event.preventDefault();
     const form = event.target;
-
-    // Detectar idioma seleccionado
     const idiomaElegido = document.getElementById('idioma-cv').value;
     const t = diccionarios[idiomaElegido];
 
@@ -62,7 +25,7 @@ document.getElementById('cv-form').addEventListener('submit', async function (ev
         habilidades: form.habilidades.value,
         idiomas: form.idiomas.value,
         formacionAdicional: form.formacionAdicional.value,
-        idioma: idiomaElegido, // Guardamos el idioma en los datos
+        idioma: idiomaElegido,
         foto: null
     };
 
@@ -75,35 +38,9 @@ document.getElementById('cv-form').addEventListener('submit', async function (ev
         });
     }
 
-    // Generar resultado con títulos traducidos
-    const resultado = `
-Nombre: ${datos.nombre}
-Email: ${datos.email}
-Teléfono: ${datos.telefono}
-Ciudad: ${datos.ciudad}
-País: ${datos.pais}
-
-${t.perfil}:
-${datos.perfil}
-
-${t.experiencia}:
-${datos.experiencia}
-
-${t.educacion}:
-${datos.educacion}
-
-${t.habilidades}:
-${datos.habilidades}
-
-${t.idiomas}:
-${datos.idiomas}
-
-${t.adicional}:
-${datos.formacionAdicional}
-  `;
+    const resultado = `Nombre: ${datos.nombre}\nEmail: ${datos.email}\nTeléfono: ${datos.telefono}\nCiudad: ${datos.ciudad}\nPaís: ${datos.pais}\n\n${t.perfil}:\n${datos.perfil}\n\n${t.experiencia}:\n${datos.experiencia}\n\n${t.educacion}:\n${datos.educacion}\n\n${t.habilidades}:\n${datos.habilidades}\n\n${t.idiomas}:\n${datos.idiomas}\n\n${t.adicional}:\n${datos.formacionAdicional}`;
     document.getElementById('resultado').textContent = resultado;
     document.getElementById('descargar-pdf').style.display = 'inline-block';
-
     window.__cvData = datos;
 });
 
@@ -111,10 +48,7 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const datos = window.__cvData;
-    
-    // Obtener etiquetas según el idioma guardado
     const t = diccionarios[datos.idioma || 'es'];
-
     const selector = document.getElementById('diseno-cv');
     const diseno = selector ? selector.value : 'clasico';
     
@@ -122,22 +56,20 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     let y = margin;
     const maxWidth = 170;
 
-    // --- CONFIGURACIÓN DE COLORES Y FUENTES ---
     let r = 0, g = 51, b = 102; 
     let fuentePrincipal = 'helvetica';
 
     if (diseno === 'moderno') {
         r = 37; g = 99; b = 235; 
     } else if (diseno === 'minimalista' || diseno === 'harvard') {
-        r = 0; g = 0; b = 0; // Negro para Harvard y Minimalista
-        if (diseno === 'harvard') fuentePrincipal = 'times'; // Fuente Serif para Harvard
+        r = 0; g = 0; b = 0;
+        if (diseno === 'harvard') fuentePrincipal = 'times';
     }
 
-    // --- ENCABEZADO ---
+    // --- BLOQUE AÑADIDO: ENCABEZADO (DIBUJAR PRIMERO) ---
     doc.setTextColor(r, g, b); 
     
     if (diseno === 'harvard') {
-        // Estilo Harvard: Nombre centrado en Times Bold
         doc.setFont('times', 'bold');
         doc.setFontSize(18);
         doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
@@ -148,7 +80,6 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         let contactInfo = `${datos.email} | ${datos.telefono} | ${datos.ciudad}, ${datos.pais}`;
         doc.text(contactInfo, doc.internal.pageSize.width / 2, y, { align: 'center' });
     } else {
-        // Estilo Normal (Moderno/Clásico/Minimalista)
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(22);
         if (diseno === 'moderno') {
@@ -171,7 +102,6 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         }
     }
 
-    // FOTO (Se oculta automáticamente en Harvard)
     if (datos.foto && diseno !== 'harvard') {
         try {
             const imgSize = 30;
@@ -185,20 +115,17 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     doc.line(margin, y, 190, y);
     y += 10;
 
-    // --- FUNCIÓN DE SECCIONES MEJORADA PARA HARVARD ---
+    // --- FUNCIÓN MOVIDA AQUÍ PARA QUE EL FLUJO SEA CORRECTO ---
     function addSection(title, text, isBullet = false) {
         if (!text || !text.trim()) return;
-
         if (y + 25 > doc.internal.pageSize.height - margin) {
             doc.addPage();
             y = margin;
         }
 
-        // Título de sección
         doc.setFont(fuentePrincipal, 'bold');
         doc.setFontSize(diseno === 'harvard' ? 12 : 14);
         doc.setTextColor(r, g, b); 
-        
         const label = (diseno === 'clasico' || diseno === 'harvard') ? title.toUpperCase() : title;
         doc.text(label, margin, y);
         
@@ -206,13 +133,12 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
             y += 2;
             doc.setDrawColor(0, 0, 0);
             doc.setLineWidth(0.2);
-            doc.line(margin, y, 190, y); // Línea fina típica de Harvard
+            doc.line(margin, y, 190, y);
             y += 5;
         } else {
             y += 7;
         }
 
-        // Texto de sección
         doc.setFont(fuentePrincipal, 'normal');
         doc.setFontSize(diseno === 'harvard' ? 10 : 11);
         doc.setTextColor(50, 50, 50);
@@ -231,17 +157,4 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         } else {
             const lines = doc.splitTextToSize(text, maxWidth);
             doc.text(lines, margin, y);
-            y += lines.length * (diseno === 'harvard' ? 5 : 6) + 4;
-        }
-    }
-
-    // USAR LAS ETIQUETAS TRADUCIDAS
-    addSection(t.perfil, datos.perfil);
-    addSection(t.experiencia, datos.experiencia, true);
-    addSection(t.educacion, datos.educacion, true);
-    addSection(t.habilidades, datos.habilidades, true);
-    addSection(t.idiomas, datos.idiomas);
-    addSection(t.adicional, datos.formacionAdicional);
-
-    doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
-});
+            y += lines.length * (diseno === 'harvard' ? 5
