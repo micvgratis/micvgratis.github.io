@@ -122,41 +122,57 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     let y = margin;
     const maxWidth = 170;
 
+    // --- CONFIGURACIÓN DE COLORES Y FUENTES ---
     let r = 0, g = 51, b = 102; 
-    
+    let fuentePrincipal = 'helvetica';
+
     if (diseno === 'moderno') {
         r = 37; g = 99; b = 235; 
-    } else if (diseno === 'minimalista') {
-        r = 0; g = 0; b = 0;
+    } else if (diseno === 'minimalista' || diseno === 'harvard') {
+        r = 0; g = 0; b = 0; // Negro para Harvard y Minimalista
+        if (diseno === 'harvard') fuentePrincipal = 'times'; // Fuente Serif para Harvard
     }
 
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(22);
+    // --- ENCABEZADO ---
     doc.setTextColor(r, g, b); 
     
-    if (diseno === 'moderno') {
+    if (diseno === 'harvard') {
+        // Estilo Harvard: Nombre centrado en Times Bold
+        doc.setFont('times', 'bold');
+        doc.setFontSize(18);
         doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
-    } else {
-        doc.text(datos.nombre, margin, y);
-    }
-
-    y += 8;
-    doc.setFontSize(11);
-    doc.setTextColor(80, 80, 80);
-    doc.setFont('helvetica', 'normal');
-
-    let contactInfo = `Email: ${datos.email} | Teléfono: ${datos.telefono}`;
-    if (datos.ciudad || datos.pais) {
-        contactInfo += ` | ${datos.ciudad || ''}${datos.ciudad && datos.pais ? ', ' : ''}${datos.pais || ''}`;
-    }
-
-    if (diseno === 'moderno') {
+        y += 7;
+        doc.setFontSize(10);
+        doc.setFont('times', 'normal');
+        doc.setTextColor(50, 50, 50);
+        let contactInfo = `${datos.email} | ${datos.telefono} | ${datos.ciudad}, ${datos.pais}`;
         doc.text(contactInfo, doc.internal.pageSize.width / 2, y, { align: 'center' });
     } else {
-        doc.text(contactInfo, margin, y);
+        // Estilo Normal (Moderno/Clásico/Minimalista)
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(22);
+        if (diseno === 'moderno') {
+            doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
+        } else {
+            doc.text(datos.nombre, margin, y);
+        }
+        y += 8;
+        doc.setFontSize(11);
+        doc.setTextColor(80, 80, 80);
+        doc.setFont('helvetica', 'normal');
+        let contactInfo = `Email: ${datos.email} | Teléfono: ${datos.telefono}`;
+        if (datos.ciudad || datos.pais) {
+            contactInfo += ` | ${datos.ciudad || ''}${datos.ciudad && datos.pais ? ', ' : ''}${datos.pais || ''}`;
+        }
+        if (diseno === 'moderno') {
+            doc.text(contactInfo, doc.internal.pageSize.width / 2, y, { align: 'center' });
+        } else {
+            doc.text(contactInfo, margin, y);
+        }
     }
 
-    if (datos.foto) {
+    // FOTO (Se oculta automáticamente en Harvard)
+    if (datos.foto && diseno !== 'harvard') {
         try {
             const imgSize = 30;
             const xFoto = (diseno === 'moderno') ? margin : doc.internal.pageSize.width - margin - imgSize;
@@ -169,6 +185,7 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     doc.line(margin, y, 190, y);
     y += 10;
 
+    // --- FUNCIÓN DE SECCIONES MEJORADA PARA HARVARD ---
     function addSection(title, text, isBullet = false) {
         if (!text || !text.trim()) return;
 
@@ -177,32 +194,44 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
             y = margin;
         }
 
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(14);
+        // Título de sección
+        doc.setFont(fuentePrincipal, 'bold');
+        doc.setFontSize(diseno === 'harvard' ? 12 : 14);
         doc.setTextColor(r, g, b); 
         
-        doc.text(diseno === 'clasico' ? title.toUpperCase() : title, margin, y);
-        y += 7;
+        const label = (diseno === 'clasico' || diseno === 'harvard') ? title.toUpperCase() : title;
+        doc.text(label, margin, y);
+        
+        if(diseno === 'harvard') {
+            y += 2;
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.2);
+            doc.line(margin, y, 190, y); // Línea fina típica de Harvard
+            y += 5;
+        } else {
+            y += 7;
+        }
 
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(11);
+        // Texto de sección
+        doc.setFont(fuentePrincipal, 'normal');
+        doc.setFontSize(diseno === 'harvard' ? 10 : 11);
         doc.setTextColor(50, 50, 50);
 
         if (isBullet) {
             const lines = text.split('\n');
             lines.forEach(line => {
                 if (line.trim()) {
-                    const bullet = diseno === 'minimalista' ? "- " : "• ";
+                    const bullet = (diseno === 'minimalista' || diseno === 'harvard') ? "- " : "• ";
                     const splitLine = doc.splitTextToSize(bullet + line.trim(), maxWidth);
                     doc.text(splitLine, margin, y);
-                    y += splitLine.length * 6;
+                    y += splitLine.length * (diseno === 'harvard' ? 5 : 6);
                 }
             });
             y += 2;
         } else {
             const lines = doc.splitTextToSize(text, maxWidth);
             doc.text(lines, margin, y);
-            y += lines.length * 6 + 4;
+            y += lines.length * (diseno === 'harvard' ? 5 : 6) + 4;
         }
     }
 
