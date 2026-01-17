@@ -157,4 +157,17 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         } else {
             const lines = doc.splitTextToSize(text, maxWidth);
             doc.text(lines, margin, y);
-            y += lines.length * (diseno === 'harvard' ? 5
+            y += lines.length * (diseno === 'harvard' ? 5: 6) + 4;
+        }
+    }
+
+    // --- LLAMADAS MOVIDAS AL FINAL (EL ORDEN DE LECTURA ATS SERÁ PERFECTO) ---
+    addSection(t.perfil, datos.perfil);
+    addSection(t.experiencia, datos.experiencia, true);
+    addSection(t.educacion, datos.educacion, true);
+    addSection(t.habilidades, datos.habilidades, true);
+    addSection(t.idiomas, datos.idiomas);
+    addSection(t.adicional, datos.formacionAdicional);
+
+    doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
+});
