@@ -14,15 +14,16 @@ body {
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  /* --- AÑADE ESTO --- */
-  min-height: 600px; /* Reserva espacio para que el footer no salte */
-  contain: layout;   /* Ayuda al navegador a calcular el diseño más rápido */
+  /* --- CAMBIO 1: Reserva de espacio para evitar saltos --- */
+  min-height: 800px; 
+  contain: layout;   
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
-  min-height: 1.2em; /* Reserva el espacio exacto de la línea del título */
+  /* --- CAMBIO 2: Estabilización del título --- */
+  min-height: 1.2em; 
   line-height: 1.2;
 }
 
@@ -34,6 +35,16 @@ input, textarea {
   border: 1px solid #ccc;
   border-radius: 5px;
   /* CAMBIO NECESARIO: Asegurar que el padding no rompa el ancho del 100% */
+  box-sizing: border-box;
+}
+
+/* Agregado para que los selectores que limpiamos en el HTML mantengan tu estilo */
+.select-estilizado {
+  width: 100%; 
+  padding: 12px; 
+  margin-top: 10px; 
+  border-radius: 5px; 
+  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
@@ -57,8 +68,9 @@ button:hover {
   background: white;
   border: 1px solid #ccc;
   border-radius: 10px;
+  /* --- CAMBIO 3: Reserva de espacio para el CV generado --- */
   display: block; 
-  min-height: 200px; /* Reserva un espacio inicial aunque esté vacío */
+  min-height: 200px; 
 }
 
 .cv-title {
@@ -124,6 +136,7 @@ button:hover {
     margin-top: 20px;
     /* Por defecto, alinea los botones a la derecha en escritorio */
     justify-content: flex-end; 
+    min-height: 45px; /* Reserva espacio para el botón de PDF que aparece después */
 }
 
 /* Para asegurar que los botones ocupen todo el ancho en móvil y se apilen */
@@ -139,4 +152,15 @@ button:hover {
 /* 3. Asegurar que el padding del body no cause scroll horizontal en móviles */
 body {
     padding: 20px 10px; /* Reduce el padding lateral en general */
+}
+
+/* Estilos para el footer que tenías en el HTML */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-bottom: 20px;
+}
+.footer-links a {
+  color: #007BFF;
+  text-decoration: none;
 }
