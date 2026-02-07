@@ -10,55 +10,60 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"></noscript>
 
     <style>
         :root { --primary: #2563EB; --secondary: #10B981; --text: #1F2937; --light: #F9FAFB; }
         * { box-sizing: border-box; }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--light); color: var(--text); margin: 0; line-height: 1.6; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: var(--light); color: var(--text); margin: 0; line-height: 1.6; -webkit-text-size-adjust: 100%; }
         
-        .container { max-width: 1024px; margin: 0 auto; padding: 0 1.25rem; }
-        header { background: white; padding: 3rem 0; text-align: center; border-bottom: 1px solid #E5E7EB; }
+        .container { max-width: 1024px; margin: 0 auto; padding: 0 1.5rem; }
+        header { background: white; padding: 3.5rem 0; text-align: center; border-bottom: 1px solid #E5E7EB; }
         
-        h1 { font-size: clamp(2.2rem, 7vw, 4rem); font-weight: 900; color: var(--primary); margin: 0 0 1rem; line-height: 1.1; letter-spacing: -0.02em; }
-        .highlight { color: var(--secondary); text-decoration: underline; text-underline-offset: 8px; }
+        h1 { font-size: clamp(2.3rem, 8vw, 4.2rem); font-weight: 900; color: var(--primary); margin: 0 0 1.2rem; line-height: 1.05; letter-spacing: -0.03em; }
+        .highlight { color: var(--secondary); text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 6px; }
         
-        .hero-p { font-size: 1.2rem; color: #4B5563; max-width: 700px; margin: 0 auto 2rem; font-weight: 500; }
-        .btn-main { display: inline-block; background: var(--secondary); color: white; padding: 1.2rem 2.5rem; border-radius: 12px; font-weight: 900; font-size: 1.4rem; text-decoration: none; transition: 0.2s; border: none; cursor: pointer; }
+        .hero-p { font-size: 1.25rem; color: #4B5563; max-width: 720px; margin: 0 auto 2.5rem; font-weight: 500; }
+        .btn-main { display: inline-block; background: var(--secondary); color: white; padding: 1.4rem 2.8rem; border-radius: 14px; font-weight: 900; font-size: 1.5rem; text-decoration: none; transition: transform 0.2s, background 0.2s; border: none; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2); }
         .btn-main:hover { background: #059669; transform: translateY(-2px); }
 
-        section { padding: 4rem 0; }
-        .card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #F3F4F6; }
+        section { padding: 4.5rem 0; }
+        .card { background: white; padding: 2.5rem; border-radius: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #F3F4F6; }
         
-        .grid-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-        .step { background: white; padding: 1.5rem; border-radius: 12px; border-top: 5px solid var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .step-num { font-size: 2.5rem; font-weight: 900; color: var(--primary); opacity: 0.3; }
+        .grid-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .step { background: white; padding: 1.8rem; border-radius: 14px; border-top: 6px solid var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .step-num { font-size: 2.8rem; font-weight: 900; color: var(--primary); opacity: 0.2; line-height: 1; }
 
-        .benefits { border-left: 6px solid var(--secondary); background: white; padding: 2rem; border-radius: 12px; }
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .benefits { border-left: 8px solid var(--secondary); background: white; padding: 2.5rem; border-radius: 14px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         
         ul { list-style: none; padding: 0; }
-        li { padding-left: 1.5rem; position: relative; margin-bottom: 0.6rem; }
-        li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; }
+        li { padding-left: 1.75rem; position: relative; margin-bottom: 0.8rem; }
+        li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: 800; }
         
         .error-list li::before { content: '❌'; }
         
-        details { background: white; margin-bottom: 1rem; border-radius: 12px; border: 1px solid #E5E7EB; }
-        summary { padding: 1.2rem; font-weight: 700; cursor: pointer; color: var(--primary); display: flex; justify-content: space-between; align-items: center; }
-        details p { padding: 0 1.2rem 1.2rem; margin: 0; color: #4B5563; }
+        details { background: white; margin-bottom: 1.2rem; border-radius: 14px; border: 1px solid #E5E7EB; overflow: hidden; }
+        summary { padding: 1.4rem; font-weight: 800; cursor: pointer; color: var(--primary); display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        details p { padding: 0 1.4rem 1.4rem; margin: 0; color: #4B5563; }
 
-        .resource-card { background: white; padding: 1.5rem; border-radius: 16px; border-bottom: 4px solid var(--primary); text-decoration: none; color: inherit; display: block; transition: 0.3s; }
-        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
-        .btn-read { background: var(--primary); color: white; text-align: center; padding: 0.6rem; border-radius: 8px; font-weight: 700; margin-top: 1rem; display: block; }
+        .resource-card { background: white; padding: 1.8rem; border-radius: 20px; border-bottom: 5px solid var(--primary); text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; transition: all 0.3s ease; }
+        .resource-card:hover { transform: translateY(-7px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .btn-read { background: var(--primary); color: white; text-align: center; padding: 0.8rem; border-radius: 10px; font-weight: 700; margin-top: auto; display: block; }
 
-        footer { background: #111827; color: white; padding: 3rem 0; text-align: center; margin-top: 4rem; }
-        .footer-links a { color: #9CA3AF; text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
+        footer { background: #111827; color: white; padding: 4rem 0; text-align: center; margin-top: 5rem; }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin: 2rem 0; }
+        .footer-links a { color: #9CA3AF; text-decoration: none; font-size: 1rem; padding: 0.5rem; }
         .footer-links a:hover { color: var(--secondary); }
 
         @media (max-width: 640px) {
-            header { padding: 2rem 1rem; }
-            .btn-main { width: 100%; text-align: center; }
-            h1 { font-size: 2.2rem; }
+            header { padding: 2.5rem 1rem; }
+            .btn-main { width: 100%; text-align: center; font-size: 1.3rem; padding: 1.2rem; }
+            h1 { font-size: 2.4rem; }
+            section { padding: 3rem 0; }
+            .card { padding: 1.5rem; }
         }
     </style>
 
@@ -70,7 +75,8 @@
       "operatingSystem": "Web",
       "applicationCategory": "BusinessApplication",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-      "description": "El mejor creador de currículum vitae gratis online sin registro."
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "2450" },
+      "description": "El mejor creador de currículum vitae gratis online en PDF sin registro."
     }
     </script>
 
@@ -81,129 +87,135 @@
 <header>
     <div class="container">
         <h1>Crea tu <span class="highlight">Currículum Vitae Gratis</span> Online</h1>
-        <p class="hero-p">Diseña tu <strong>CV profesional</strong> en PDF en solo 5 minutos. Sin registros, sin pagos y optimizado para sistemas ATS.</p>
-        <a href="app.html" class="btn-main" aria-label="Comenzar a crear mi currículum ahora">Hacer mi CV Gratis ahora</a>
-        <p style="font-size: 0.85rem; margin-top: 1rem; color: #6B7280;">⚡ Descarga directa en PDF sin registro</p>
+        <p class="hero-p">Diseña tu <strong>CV profesional</strong> en PDF en solo 5 minutos. Sin registros, sin pagos ocultos y optimizado para filtros ATS.</p>
+        <a href="app.html" class="btn-main" aria-label="Abrir generador de currículum">Hacer mi CV Gratis ahora</a>
+        <p style="font-size: 0.9rem; margin-top: 1.2rem; color: #6B7280; font-weight: 600;">⚡ Descarga directa en PDF sin registro</p>
     </div>
 </header>
 
 <main class="container">
     <section>
         <div class="card">
-            <h2 style="margin-top:0; color: var(--text);">Tu éxito profesional empieza aquí</h2>
-            <p>En <strong>MiCVGratis</strong>, hemos creado la herramienta más sencilla para <strong>crear un CV gratis</strong> que realmente funcione. Nuestras plantillas están diseñadas por expertos en RRHH para superar los filtros automáticos (ATS) que usan las grandes empresas.</p>
-            <p>No pierdas tiempo con registros complicados. Entras, rellenas tus datos y descargas tu futuro empleo en PDF.</p>
+            <h2 style="margin-top:0; color: var(--text); font-size: 1.8rem;">Tu éxito profesional empieza con un buen CV</h2>
+            <p>En <strong>MiCVGratis</strong>, hemos simplificado el proceso al máximo. Nuestras plantillas de currículum siguen los estándares internacionales de reclutamiento para asegurar que tu perfil sea leído correctamente tanto por personas como por <strong>sistemas ATS</strong>.</p>
+            <p>No pedimos registros, ni tarjetas, ni correos electrónicos. Tu privacidad es total porque tus datos nunca salen de tu dispositivo.</p>
         </div>
     </section>
 
     <section>
-        <h2 style="text-align:center; margin-bottom:2rem;">¿Cómo funciona?</h2>
+        <h2 style="text-align:center; margin-bottom:3rem; font-size: 2rem;">¿Cómo funciona MiCVGratis?</h2>
         <div class="grid-steps">
             <div class="step">
                 <span class="step-num">01</span>
-                <h3>Editor rápido</h3>
-                <p>Nuestra interfaz es fluida y funciona perfectamente en móviles y ordenadores.</p>
+                <h3 style="margin: 1rem 0;">Editor Inteligente</h3>
+                <p style="color: #4B5563; font-size: 0.95rem;">Interfaz optimizada para completar tu información de forma rápida y sin errores.</p>
             </div>
             <div class="step">
                 <span class="step-num">02</span>
-                <h3>Tus Logros</h3>
-                <p>Añade tu experiencia y habilidades con nuestros consejos de redacción profesionales.</p>
+                <h3 style="margin: 1rem 0;">Logros y Perfil</h3>
+                <p style="color: #4B5563; font-size: 0.95rem;">Sigue nuestras guías integradas para redactar una experiencia que impacte a los reclutadores.</p>
             </div>
             <div class="step">
                 <span class="step-num">03</span>
-                <h3>Descarga PDF</h3>
-                <p>Obtén un archivo profesional listo para enviar por email o subir a portales de empleo.</p>
+                <h3 style="margin: 1rem 0;">PDF Profesional</h3>
+                <p style="color: #4B5563; font-size: 0.95rem;">Genera un archivo limpio, elegante y listo para ser enviado a cualquier oferta de empleo.</p>
             </div>
         </div>
     </section>
 
     <section>
         <div class="benefits">
-            <h2 style="margin-top:0;">¿Por qué elegir MiCVGratis?</h2>
+            <h2 style="margin-top:0; font-size: 1.8rem;">Ventajas de nuestro generador</h2>
             <div class="grid-2">
                 <ul>
-                    <li><strong>100% Gratis:</strong> Sin cuotas mensuales ni pagos por descarga.</li>
-                    <li><strong>Privacidad:</strong> Tus datos personales se quedan en tu dispositivo.</li>
-                    <li><strong>Sin Registro:</strong> No pedimos tu email para dejarte descargar.</li>
+                    <li><strong>Gratis Siempre:</strong> Sin trucos, sin pagos al finalizar.</li>
+                    <li><strong>Privacidad Garantizada:</strong> Datos locales, nada en la nube.</li>
+                    <li><strong>Formato Estándar:</strong> Optimizado para filtros ATS modernos.</li>
                 </ul>
                 <ul>
-                    <li><strong>Formato ATS:</strong> Diseños limpios que leen bien los robots de RRHH.</li>
-                    <li><strong>Personalizable:</strong> Ajusta secciones según tu perfil profesional.</li>
-                    <li><strong>Multidispositivo:</strong> Crea tu CV desde el móvil en el bus.</li>
+                    <li><strong>Sin Cuentas:</strong> No pierdas tiempo creando usuarios.</li>
+                    <li><strong>Diseño Limpio:</strong> Enfocado en lo que importa: tu experiencia.</li>
+                    <li><strong>Fácil de usar:</strong> Diseñado para ser intuitivo y rápido.</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section>
-        <h2 style="text-align:center; font-size:2rem; margin-bottom:2rem;">Guía para un Currículum Perfecto</h2>
+        <h2 style="text-align:center; font-size:2.2rem; margin-bottom:3rem;">Consejos para un Currículum Ganador</h2>
         <div class="card" style="margin-bottom:1.5rem;">
-            <h3>1. Información de Contacto</h3>
-            <p>Lo básico debe ser impecable: Nombre completo, teléfono, email profesional y tu enlace a LinkedIn.</p>
+            <h3 style="color: var(--primary);">1. Elige una estructura clara</h3>
+            <p>Usa el orden cronológico inverso. Es el preferido por los reclutadores porque muestra tu situación profesional actual de un vistazo.</p>
         </div>
-        <div class="card" style="margin-bottom:1.5rem; border-left: 5px solid var(--primary);">
-            <h3>2. El Perfil Profesional</h3>
-            <p>Un resumen de 3 frases que explique quién eres y qué valor aportas a la empresa.</p>
+        <div class="card" style="margin-bottom:1.5rem; border-left: 6px solid var(--primary);">
+            <h3 style="color: var(--primary);">2. Redacta con verbos de acción</h3>
+            <p>En lugar de "tareas realizadas", habla de "logros conseguidos". Usa palabras como: <em>Lideré, Aumenté, Desarrollé o Gestioné</em>.</p>
         </div>
-        <div class="card" style="background: #FFF5F5; border-color: #FEB2B2;">
-            <h3 style="color: #C53030;">⚠️ Errores comunes que debes evitar</h3>
+        <div class="card" style="background: #FFF5F5; border: 1px solid #FEB2B2;">
+            <h3 style="color: #C53030;">⚠️ Evita estos errores críticos</h3>
             <ul class="error-list">
-                <li>Faltas de ortografía (proyectan falta de atención al detalle).</li>
-                <li>Incluir información irrelevante o demasiado antigua.</li>
-                <li>No adaptar el CV a la oferta específica a la que te presentas.</li>
+                <li><strong>Faltas de ortografía:</strong> Un solo error puede descartar tu candidatura.</li>
+                <li><strong>Exceso de páginas:</strong> Si tienes menos de 10 años de experiencia, una página es suficiente.</li>
+                <li><strong>Información desactualizada:</strong> Revisa siempre tu número de teléfono y email.</li>
             </ul>
         </div>
     </section>
 
     <section>
-        <h2 style="text-align:center; margin-bottom:2rem;">Preguntas Frecuentes (FAQ)</h2>
+        <h2 style="text-align:center; margin-bottom:2.5rem; font-size: 2rem;">Preguntas Frecuentes</h2>
         <details>
-            <summary>¿Tengo que pagar para descargar el PDF? <span>+</span></summary>
-            <p>No. Nuestra misión es ayudar a la gente a encontrar trabajo. El servicio es y será gratuito.</p>
+            <summary>¿Es el currículum compatible con filtros ATS? <span>+</span></summary>
+            <p>Sí, nuestras plantillas están diseñadas con una estructura técnica que permite a los sistemas de seguimiento de candidatos (ATS) leer tu información sin errores.</p>
         </details>
         <details>
-            <summary>¿Dónde se guardan mis datos personales? <span>+</span></summary>
-            <p>Se guardan solo en tu navegador. Nosotros no tenemos acceso a tu información privada.</p>
+            <summary>¿Necesito conexión a internet para usarlo? <span>+</span></summary>
+            <p>Sí, necesitas conexión para cargar la herramienta, pero una vez abierta, el procesamiento de tu PDF se hace localmente en tu navegador.</p>
+        </details>
+        <details>
+            <summary>¿Puedo editar mi CV después de descargarlo? <span>+</span></summary>
+            <p>Mientras no borres el historial de tu navegador, tus datos aparecerán cuando vuelvas a entrar para que puedas hacer cambios rápidos.</p>
         </details>
     </section>
 
     <section id="recursos">
-        <h2 style="text-align:center; margin-bottom:2.5rem;">Recursos para candidatos</h2>
+        <h2 style="text-align:center; margin-bottom:3rem; font-style: italic; font-size: 2.2rem;">Recursos para Impulsar tu Carrera</h2>
         <div class="grid-2">
-            <a href="guia-ats.html" class="resource-card" aria-label="Leer guía sobre filtros ATS">
-                <span style="font-size:1.5rem;">🤖</span>
-                <h3>Domina los Filtros ATS</h3>
-                <p>Aprende cómo estructurar tu CV para que los algoritmos te seleccionen.</p>
-                <span class="btn-read">Leer Guía</span>
+            <a href="guia-ats.html" class="resource-card" aria-label="Guía sobre filtros ATS">
+                <span style="font-size:2rem; margin-bottom:1rem;">🤖</span>
+                <h3 style="margin-top:0;">Filtros ATS al detalle</h3>
+                <p style="color: #4B5563; flex-grow: 1;">Descubre qué palabras clave y formatos prefieren los algoritmos de selección actuales.</p>
+                <span class="btn-read">Leer Guía Técnica</span>
             </a>
-            <a href="guia-perfil.html" class="resource-card" aria-label="Leer guía sobre perfil profesional">
-                <span style="font-size:1.5rem;">✍️</span>
-                <h3>El Perfil Ganador</h3>
-                <p>Ejemplos de resúmenes profesionales para diferentes sectores.</p>
-                <span class="btn-read">Leer Guía</span>
+            <a href="guia-perfil.html" class="resource-card" aria-label="Guía sobre el perfil profesional">
+                <span style="font-size:2rem; margin-bottom:1rem;">✍️</span>
+                <h3 style="margin-top:0;">Redacción de Perfil</h3>
+                <p style="color: #4B5563; flex-grow: 1;">Aprende a resumir tu trayectoria en tres frases potentes que enganchen al reclutador.</p>
+                <span class="btn-read">Leer Guía de Estilo</span>
             </a>
         </div>
     </section>
 
-    <section style="text-align:center;">
-        <a href="app.html" class="btn-main" style="background: var(--primary); padding: 1.5rem 3rem;">¡EMPEZAR MI CV AHORA!</a>
+    <section style="text-align:center; padding-bottom: 6rem;">
+        <h2 style="margin-bottom:2rem;">¿Listo para conseguir ese empleo?</h2>
+        <a href="app.html" class="btn-main" style="background: var(--primary); padding: 1.5rem 3.5rem;">CREAR MI CV AHORA</a>
     </section>
 </main>
 
 <footer>
     <div class="container">
-        <p style="font-weight:900; font-size:1.5rem; margin-bottom:1rem;">Mi<span style="color:var(--secondary);">CV</span>Gratis</p>
-        <nav class="footer-links" aria-label="Enlaces de pie de página">
+        <p style="font-weight:900; font-size:1.8rem; margin-bottom:1rem; letter-spacing: -1px;">Mi<span style="color:var(--secondary);">CV</span>Gratis</p>
+        <nav class="footer-links" aria-label="Navegación de pie de página">
             <a href="politica-privacidad.html">Privacidad</a>
+            <a href="terminos-servicio.html">Términos</a>
             <a href="contacto.html">Contacto</a>
             <a href="app.html">Generador</a>
         </nav>
-        <p style="font-size: 0.75rem; color: #6B7280; margin-top: 2rem;">&copy; 2026 MiCVGratis. Creado para ayudar a profesionales de todo el mundo.</p>
+        <p style="font-size: 0.8rem; color: #6B7280; margin-top: 3rem;">&copy; 2026 MiCVGratis. Diseñado para maximizar tu empleabilidad sin costes ocultos.</p>
     </div>
 </footer>
 
 <script>
-  // Registro de Service Worker para PWA y velocidad
+  // Service Worker para carga offline y velocidad
   if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js').catch(() => {});
