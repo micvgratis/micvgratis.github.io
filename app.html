@@ -6,75 +6,76 @@
     <meta name="google-adsense-account" content="ca-pub-2453913628416113"> 
 
     <title>Empezar a Crear CV Online GRATIS | Generador Profesional y Rápido</title>
-    <meta name="description" content="Genera tu CV profesional online paso a paso de forma rápida y gratuita. ¡Empieza ahora con MiCVGratis y descarga tu currículum en PDF en minutos!">
-    
-    <link rel="canonical" href="https://micvgratis.github.io/app.html">
-    
-    <link rel="stylesheet" href="style.css" />
 
+    <meta name="description" content="Genera tu CV profesional online paso a paso de forma rápida y gratuita. ¡Empieza ahora con MiCVGratis y descarga tu currículum en PDF en minutos!">
+
+    <link rel="canonical" href="https://micvgratis.github.io/app.html">
+
+    <link rel="stylesheet" href="style.css" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2453913628416113"
       crossorigin="anonymous"></script>
 </head>
 <body>
+    <div style="min-height: 90px; width: 100%;"></div>
+
     <div class="container">
         <h1>Creador de Currículum Online: ¡Empieza GRATIS!</h1>
-        
         <form id="cv-form">
             <div class="form-group">
                 <label for="nombre">Nombre completo:</label>
                 <input type="text" id="nombre" name="nombre" required />
             </div>
-            
+
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required />
             </div>
-            
+
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
                 <input type="tel" id="telefono" name="telefono" />
             </div>
-            
+
             <div class="form-group">
                 <label for="ciudad">Ciudad:</label>
                 <input type="text" id="ciudad" name="ciudad" />
             </div>
-            
+
             <div class="form-group">
                 <label for="pais">País:</label>
                 <input type="text" id="pais" name="pais" />
             </div>
-            
+
             <div class="form-group">
                 <label for="foto">Foto de Perfil (opcional):</label>
                 <input type="file" id="foto" name="foto" accept="image/*" />
             </div>
-            
+
             <div class="form-group">
                 <label for="perfil">Perfil profesional:</label>
                 <textarea id="perfil" name="perfil" rows="3"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="experiencia">Experiencia laboral:</label>
                 <textarea id="experiencia" name="experiencia" rows="4"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="educacion">Educación:</label>
                 <textarea id="educacion" name="educacion" rows="3"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="habilidades">Competencias:</label>
                 <textarea id="habilidades" name="habilidades" rows="3"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="idiomas">Idiomas:</label>
                 <textarea id="idiomas" name="idiomas" rows="2"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="formacionAdicional">Formación Adicional (Opcional):</label>
                 <textarea id="formacionAdicional" name="formacionAdicional" rows="3"></textarea>
@@ -82,7 +83,7 @@
 
             <div class="form-group">
                 <label for="idioma-cv">Idioma de los títulos del CV:</label>
-                <select id="idioma-cv" name="idioma-cv" class="select-estilizado">
+                <select id="idioma-cv" name="idioma-cv" style="width: 100%; padding: 12px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;">
                     <option value="es" selected>🇪🇸 Español</option>
                     <option value="en">🇺🇸 Inglés (English)</option>
                     <option value="fr">🇫🇷 Francés (Français)</option>
@@ -92,10 +93,10 @@
             </div>
 
             <div class="form-group">
-                <label for="diseno-cv">Elegir Diseño:</label>
-                <select id="diseno-cv" name="diseno-cv" class="select-estilizado">
+                <label for="diseno-cv" style="font-weight: bold; display: block; margin-top: 15px;">Elegir Diseño:</label>
+                <select id="diseno-cv" name="diseno-cv" style="width: 100%; padding: 12px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;">
                     <option value="clasico">📜 Clásico (Tradicional)</option>
-                    <option value="moderno" selected>🎨 Moderno</option>
+                    <option value="moderno" selected>🎨 Moderno (Recomendado)</option>
                     <option value="minimalista">☁️ Minimalista (Limpio)</option>
                     <option value="harvard">🏛️ Harvard (Recomendado)</option>
                 </select>
@@ -106,7 +107,6 @@
                 <button type="button" id="descargar-pdf" style="display: none;">Descargar como PDF</button>
             </div>
         </form>
-
         <div id="resultado" class="resultado"></div>
     </div>
 
