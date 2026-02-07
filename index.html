@@ -3,12 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" media="print" onload="this.media='all'">
-
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -20,8 +14,16 @@
       "name": "MiCVGratis",
       "operatingSystem": "Web",
       "applicationCategory": "BusinessApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "2450" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "2450"
+      },
       "description": "El mejor creador de currículum vitae gratis online. Plantillas profesionales en PDF sin registro."
     }
     </script>
@@ -33,33 +35,72 @@
       "mainEntity": [{
         "@type": "Question",
         "name": "¿Hay que pagar después de crear el CV?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Es 100% gratuito..." }
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Es 100% gratuito. A diferencia de otras webs que te piden pagar al finalizar para descargar el archivo, en MiCVGratis el PDF es gratis de principio a fin."
+        }
       }, {
         "@type": "Question",
         "name": "¿Es seguro poner mis datos personales?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Es totalmente seguro..." }
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es totalmente seguro. Tus datos no se envían a ningún servidor, se quedan guardados solo en tu navegador (localStorage)."
+        }
       }]
     }
     </script>
 
     <style>
-        html { scroll-behavior: smooth; }
-        /* HEMOS QUITADO EL @IMPORT DE AQUÍ PARA GANAR VELOCIDAD */
-        body { font-family: 'Inter', sans-serif; }
-        .benefits ul, .complete-guide ul { list-style: none; padding-left: 0; }
-        .benefits li, .complete-guide li { padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative; }
-        .benefits li::before, .complete-guide li::before { content: '✓'; position: absolute; left: 0; color: #10B981; font-weight: 700; }
-        .complete-guide ul ul li::before { content: '-'; color: #4B5563; font-weight: 400; }
-        .error-list li::before { content: none !important; }
-        .error-list li { padding-left: 0 !important; }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Configuración de la fuente Inter (limpia y moderna) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilos específicos para la sección de beneficios/guía */
+        .benefits ul, .complete-guide ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .benefits li, .complete-guide li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        .benefits li::before, .complete-guide li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10B981; /* Esmeralda/Verde para checkmark */
+            font-weight: 700;
+        }
+        /* Ajuste para los li dentro de un li (sublistas) */
+        .complete-guide ul ul li::before {
+            content: '-';
+            color: #4B5563; /* Gris */
+            font-weight: 400;
+        }
+        /* Eliminar tics de la sección de errores específicos */
+        .error-list li::before {
+            content: none !important;
+        }
+        .error-list li {
+            padding-left: 0 !important;
+        }
     </style>
-
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'primary': '#2563EB', 'secondary': '#10B981' },
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'primary': '#2563EB', /* Azul vibrante */
+                        'secondary': '#10B981', /* Verde esmeralda */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
                 }
             }
         }
@@ -76,12 +117,11 @@
     <meta property="og:url" content="https://micvgratis.github.io/">
     <meta property="og:image" content="https://micvgratis.github.io/og-image.jpg">
 
-    <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2453913628416113" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2453913628416113" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-2453913628416113">
     <meta name="google-site-verification" content="encF6rGiZEojXltgrJ_gfXPacLX584efJf0hpi3JglE" />
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
-    <div style="min-height: 100px; width: 100%;"></div>
     
     <header class="bg-white shadow-xl border-b border-gray-100">
         <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
