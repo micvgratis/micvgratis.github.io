@@ -14,11 +14,16 @@ body {
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  /* --- AÑADE ESTO --- */
+  min-height: 600px; /* Reserva espacio para que el footer no salte */
+  contain: layout;   /* Ayuda al navegador a calcular el diseño más rápido */
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  min-height: 1.2em; /* Reserva el espacio exacto de la línea del título */
+  line-height: 1.2;
 }
 
 input, textarea {
@@ -52,6 +57,8 @@ button:hover {
   background: white;
   border: 1px solid #ccc;
   border-radius: 10px;
+  display: block; 
+  min-height: 200px; /* Reserva un espacio inicial aunque esté vacío */
 }
 
 .cv-title {
