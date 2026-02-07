@@ -6,20 +6,31 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
     <style>
         :root { --primary: #2563EB; --secondary: #10B981; }
-        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; margin: 0; }
-        header { background: white; padding: 4rem 1rem; text-align: center; border-bottom: 1px solid #f3f4f6; }
-        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 1rem; font-weight: 900; }
-        .benefits ul, .complete-guide ul { list-style: none; padding-left: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; margin: 0; color: #1f2937; line-height: 1.5; }
+        .max-w-7xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
+        .max-w-5xl { max-width: 64rem; margin-left: auto; margin-right: auto; }
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .bg-primary { background-color: var(--primary); }
+        .bg-secondary { background-color: var(--secondary); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        header { background: white; padding: 4rem 1rem; border-bottom: 1px solid #f3f4f6; text-align: center; }
+        h1 { font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; }
+        .grid { display: grid; gap: 2rem; }
+        @media (min-width: 768px) { .grid-cols-4 { grid-template-columns: repeat(4, 1fr); } .grid-cols-2 { grid-template-columns: repeat(2, 1fr); } }
+        section { margin-bottom: 6rem; padding: 0 1rem; }
+        .btn-main { display: inline-block; color: white; font-weight: 900; padding: 1.5rem 3.5rem; border-radius: 1rem; text-decoration: none; transition: transform 0.3s; }
+        /* Reset de listas para tus secciones de beneficios */
+        .benefits ul, .complete-guide ul { list-style: none; padding: 0; }
         .benefits li, .complete-guide li { padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative; }
-        .benefits li::before, .complete-guide li::before { content: '✓'; position: absolute; left: 0; color: #10B981; font-weight: 700; }
-        .error-list li::before { content: none !important; }
-        .error-list li { padding-left: 0 !important; }
+        .benefits li::before, .complete-guide li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; }
+        details summary { list-style: none; cursor: pointer; }
+        details summary::-webkit-details-marker { display: none; }
     </style>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -28,22 +39,33 @@
     <meta name="description" content="🚀 Crea tu currículum vitae gratis en PDF ahora. Sin pagos ocultos, sin registros y en solo 5 minutos. Plantillas profesionales optimizadas para filtros ATS.">
     <link rel="canonical" href="https://micvgratis.github.io/">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "MiCVGratis",
+      "operatingSystem": "Web",
+      "applicationCategory": "BusinessApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+      "description": "El mejor creador de currículum vitae gratis online."
+    }
+    </script>
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2453913628416113" crossorigin="anonymous"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+
+<body class="bg-gray-50 antialiased">
     
-    <header class="bg-white shadow-xl border-b border-gray-100">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black text-primary mb-6 leading-tight tracking-tight">
+    <header class="bg-white shadow-xl">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black text-primary tracking-tight">
                 Crea tu <span class="text-secondary underline decoration-8">Currículum Vitae Gratis</span> Online
             </h1>
-            
-            <p class="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium">
+            <p class="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto font-medium">
                 Diseña tu <strong>CV profesional</strong> en PDF en 5 minutos. Sin registros, sin suscripciones ocultas y totalmente optimizado para filtros ATS.
             </p>
-            
-            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="app.html" title="Abrir generador de currículum vitae gratuito" class="inline-block bg-secondary hover:bg-green-600 text-white font-black text-2xl sm:text-3xl py-6 px-14 rounded-2xl shadow-2xl transform transition duration-300 hover:scale-105">
+            <div class="mt-10">
+                <a href="app.html" class="btn-main bg-secondary text-2xl sm:text-3xl shadow-2xl hover:scale-105">
                     Hacer mi CV Gratis ahora
                 </a>
             </div>
@@ -51,277 +73,148 @@
         </div>
     </header>
 
-    <main class="space-y-24 py-16">
+    <main class="py-16">
         
-        <section class="intro-section max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
+        <section class="max-w-5xl mx-auto bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
             <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-primary pb-2">
                 Transforma tu búsqueda de empleo con un currículum profesional
             </h2>
-            <p class="text-lg text-gray-600 leading-relaxed mb-4">
+            <p class="text-lg text-gray-600 mb-4">
                 En <strong>MiCVGratis</strong>, entendemos que tu currículum es la clave para abrir las puertas de nuevas oportunidades. Hemos diseñado la plataforma más intuitiva para que puedas <strong>crear un CV gratis</strong> que no solo capte la atención, sino que también hable por tu trayectoria.
             </p>
-            <p class="text-lg text-gray-600 leading-relaxed">
+            <p class="text-lg text-gray-600">
                 Olvídate de los softwares complejos y los costes ocultos; aquí, la calidad y la profesionalidad están al alcance de tu mano. Nuestras <strong>plantillas de currículum</strong> están diseñadas para pasar los filtros ATS de las empresas modernas, garantizando que tu perfil llegue a manos de los reclutadores.
             </p>
         </section>
 
-        <section class="funciona max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">
-                Pasos para crear un Currículum Vitae gratis en PDF
-            </h2>
-            
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary hover:shadow-2xl transition duration-300 flex flex-col">
-                    <div class="text-4xl font-extrabold text-primary mb-3">1.</div>
+        <section class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Pasos para crear un Currículum Vitae gratis en PDF</h2>
+            <div class="grid md:grid-cols-4">
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary">
+                    <div class="text-4xl font-black text-primary mb-3">1.</div>
                     <h3 class="text-xl font-bold mb-2">Editor Online</h3>
-                    <p class="text-gray-600 text-sm mb-4 flex-grow">Accede directamente a nuestra herramienta para crear tu CV online sin esperas.</p>
-                    <a href="app.html" aria-label="Abrir el editor de currículum gratuito" class="text-xs text-primary font-bold hover:underline">Abrir editor →</a>
+                    <p class="text-gray-600 text-sm mb-4">Accede directamente a nuestra herramienta para crear tu CV online sin esperas.</p>
+                    <a href="app.html" class="text-xs text-primary font-bold hover:underline">Abrir editor →</a>
                 </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary hover:shadow-2xl transition duration-300 flex flex-col">
-                    <div class="text-4xl font-extrabold text-primary mb-3">2.</div>
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary">
+                    <div class="text-4xl font-black text-primary mb-3">2.</div>
                     <h3 class="text-xl font-bold mb-2">Tus Datos</h3>
-                    <p class="text-gray-600 text-sm mb-4 flex-grow">Añade tu experiencia laboral y redacta un perfil profesional impactante.</p>
-                    <a href="#recursos" aria-label="Guía para redactar el perfil profesional" class="text-xs text-primary font-bold hover:underline">Cómo redactar tu perfil →</a>
+                    <p class="text-gray-600 text-sm mb-4">Añade tu experiencia laboral y redacta un perfil profesional impactante.</p>
+                    <a href="#recursos" class="text-xs text-primary font-bold hover:underline">Cómo redactar tu perfil →</a>
                 </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary hover:shadow-2xl transition duration-300 flex flex-col">
-                    <div class="text-4xl font-extrabold text-primary mb-3">3.</div>
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary">
+                    <div class="text-4xl font-black text-primary mb-3">3.</div>
                     <h3 class="text-xl font-bold mb-2">Formato ATS</h3>
-                    <p class="text-gray-600 text-sm mb-4 flex-grow">Nuestras plantillas están optimizadas para superar los filtros automáticos ATS.</p>
-                    <a href="#recursos" aria-label="Más información sobre optimización ATS" class="text-xs text-primary font-bold hover:underline">¿Por qué usar formato ATS? →</a>
+                    <p class="text-gray-600 text-sm mb-4">Nuestras plantillas están optimizadas para superar los filtros automáticos ATS.</p>
+                    <a href="#recursos" class="text-xs text-primary font-bold hover:underline">¿Por qué usar formato ATS? →</a>
                 </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary hover:shadow-2xl transition duration-300 flex flex-col">
-                    <div class="text-4xl font-extrabold text-primary mb-3">4.</div>
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-primary">
+                    <div class="text-4xl font-black text-primary mb-3">4.</div>
                     <h3 class="text-xl font-bold mb-2">PDF Gratis</h3>
-                    <p class="text-gray-600 text-sm mb-4 flex-grow">Descarga tu currículum en PDF de alta calidad listo para imprimir y enviar.</p>
-                    <a href="#recursos" aria-label="Consejos para enviar el currículum por email" class="text-xs text-primary font-bold hover:underline">Tips de envío →</a>
+                    <p class="text-gray-600 text-sm mb-4">Descarga tu currículum en PDF de alta calidad listo para imprimir y enviar.</p>
+                    <a href="#recursos" class="text-xs text-primary font-bold hover:underline">Tips de envío →</a>
                 </div>
             </div>
         </section>
 
-        <section class="benefits max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-                ¿Por qué MiCVGratis es el mejor creador de currículum online?
-            </h2>
+        <section class="benefits max-w-5xl mx-auto">
             <div class="bg-white p-10 rounded-3xl shadow-xl border-l-8 border-secondary">
-                <p class="text-xl text-gray-600 mb-8 font-medium">Ofrecemos lo que otros cobran. Nuestro compromiso es tu éxito profesional:</p>
-                <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+                <h2 class="text-3xl font-bold mb-8">¿Por qué MiCVGratis es el mejor creador de currículum online?</h2>
+                <div class="grid md:grid-cols-2">
                     <ul>
                         <li><strong>Gratis de Verdad:</strong> Sin pagos por descarga ni periodos de prueba engañosos.</li>
-                        <li><strong>Privacidad Total:</strong> Tus datos no se guardan en la nube, permanecen en tu equipo local.</li>
-                        <li><strong>Diseños Modernos:</strong> Plantillas elegantes alineadas con las tendencias de RRHH.</li>
+                        <li><strong>Privacidad Total:</strong> Tus datos no se guardan en la nube.</li>
+                        <li><strong>Diseños Modernos:</strong> Plantillas elegantes y profesionales.</li>
                     </ul>
                     <ul>
-                        <li><strong>Compatibilidad ATS:</strong> Estructura técnica perfecta para ser leído por sistemas de reclutamiento.</li>
-                        <li><strong>Sin Registro:</strong> Empieza a escribir ya mismo, sin crear cuentas ni contraseñas.</li>
-                        <li><strong>Rapidez Extrema:</strong> Interfaz fluida para tener tu CV listo en menos de 5 minutos.</li>
+                        <li><strong>Compatibilidad ATS:</strong> Estructura perfecta para sistemas de reclutamiento.</li>
+                        <li><strong>Sin Registro:</strong> Empieza a escribir ya mismo.</li>
+                        <li><strong>Rapidez Extrema:</strong> CV listo en menos de 5 minutos.</li>
                     </ul>
                 </div>
-                <p class="mt-10 text-lg text-gray-700 font-bold bg-green-50 p-4 rounded-xl inline-block">
-                    ✓ La mejor alternativa gratuita a Canva, OnlineCV o Novoresume.
-                </p>
             </div>
         </section>
-        
-        <section class="complete-guide max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-extrabold text-gray-800 mb-12 text-center">
-                Cómo hacer un Currículum Vitae paso a paso
-            </h2>
 
-            <div class="space-y-12">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-50">
-                    <h3 class="text-2xl font-bold text-primary mb-4 flex items-center">
-                        <span class="mr-3">📇</span> 1. Datos de Contacto Profesionales
-                    </h3>
-                    <p class="text-gray-600 mb-6">Esta es la cabecera de tu currículum. Asegúrate de que sea legible y correcta. Es el primer punto de contacto que tendrá el reclutador contigo.</p>
-                    <ul class="grid sm:grid-cols-2 gap-y-3">
-                        <li><strong>Nombre:</strong> Usa el nombre por el que quieres ser conocido profesionalmente.</li>
-                        <li><strong>Teléfono:</strong> Revisa el prefijo si buscas empleo en el extranjero.</li>
-                        <li><strong>Email:</strong> Usa uno serio (nombre.apellido@ejemplo.com).</li>
-                        <li><strong>Ubicación:</strong> Ciudad y país es suficiente.</li>
-                        <li><strong>LinkedIn:</strong> Un perfil actualizado multiplica tus opciones por 3.</li>
-                        <li><strong>Web/Portfolio:</strong> Ideal para diseñadores o programadores.</li>
+        <section class="complete-guide max-w-5xl mx-auto">
+            <h2 class="text-4xl font-black text-center mb-12">Cómo hacer un Currículum Vitae paso a paso</h2>
+            <div class="grid gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-primary mb-4">📇 1. Datos de Contacto Profesionales</h3>
+                    <p class="text-gray-600 mb-6">Esta es la cabecera de tu currículum. Es el primer punto de contacto que tendrá el reclutador contigo.</p>
+                    <ul class="grid md:grid-cols-2">
+                        <li><strong>Nombre:</strong> Tu nombre profesional.</li>
+                        <li><strong>Email:</strong> Uno serio (nombre@ejemplo.com).</li>
+                        <li><strong>LinkedIn:</strong> Un perfil actualizado es clave.</li>
+                        <li><strong>Ubicación:</strong> Ciudad y país.</li>
                     </ul>
                 </div>
                 
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-50">
-                    <h3 class="text-2xl font-bold text-primary mb-4 flex items-center">
-                        <span class="mr-3">🎯</span> 2. Perfil Profesional: Tu Resumen en 3 líneas
-                    </h3>
-                    <p class="text-gray-600 mb-4">Usa este párrafo para explicar quién eres y qué valor aportas. Es tu "gancho" inicial para que el reclutador siga leyendo tu trayectoria laboral.</p>
-                    <div class="bg-blue-50 p-4 rounded-xl text-gray-700 italic border-l-4 border-primary">
-                        "Especialista en Marketing Digital con 5 años de experiencia aumentando conversiones un 20%. Experto en Google Ads y estrategia de contenidos."
-                    </div>
-                </div>
-                
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-50">
-                    <h3 class="text-2xl font-bold text-primary mb-4 flex items-center">
-                        <span class="mr-3">💼</span> 3. Experiencia Laboral basada en Logros
-                    </h3>
-                    <p class="text-gray-600 mb-4">No limites tu CV a una lista de tareas aburridas. Los reclutadores buscan resultados y cómo resolviste problemas en el pasado.</p>
-                    <ul class="space-y-3">
-                        <li><strong>Orden:</strong> Usa siempre el cronológico inverso (el empleo más reciente primero).</li>
-                        <li><strong>Cuantifica:</strong> En lugar de poner solo "Ventas", di "Aumenté las ventas de la zona un 15% anual".</li>
-                        <li><strong>Verbos de acción:</strong> Empieza tus frases con "Desarrollé", "Gestioné", "Lideré" o "Ahorré".</li>
-                    </ul>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-primary">
+                    <h3 class="text-2xl font-bold text-primary mb-4">🎯 2. Perfil Profesional: Tu Resumen en 3 líneas</h3>
+                    <p class="text-gray-600 italic mb-4">"Especialista en Marketing Digital con 5 años de experiencia aumentando conversiones un 20%. Experto en Google Ads."</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-primary mb-4">💼 3. Experiencia Laboral basada en Logros</h3>
+                    <p class="text-gray-600 mb-4">Usa el orden cronológico inverso (lo más reciente primero) y cuantifica tus éxitos con datos.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2">
                     <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <h3 class="text-2xl font-bold text-primary mb-4">🎓 4. Educación y Formación</h3>
-                        <p class="text-gray-600 mb-4">Añade tus estudios superiores y cursos relevantes para el puesto.</p>
-                        <ul class="text-sm text-gray-500">
-                            <li>• Grado o Licenciatura universitaria.</li>
-                            <li>• Certificaciones técnicas específicas.</li>
-                            <li>• Formación continua y másteres recientes.</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-primary mb-2">🎓 4. Educación</h3>
+                        <p class="text-gray-600 text-sm">Añade tus estudios y certificaciones técnicas relevantes.</p>
                     </div>
                     <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <h3 class="text-2xl font-bold text-primary mb-4">🛠️ 5. Habilidades (Hard y Soft)</h3>
-                        <p class="text-gray-600 mb-4">Diferencia entre conocimientos técnicos y habilidades interpersonales.</p>
-                        <ul class="text-sm text-gray-500">
-                            <li>• <strong>Hard Skills:</strong> Excel, Python, SAP, Idiomas.</li>
-                            <li>• <strong>Soft Skills:</strong> Liderazgo, Empatía, Adaptabilidad.</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-primary mb-2">🛠️ 5. Habilidades</h3>
+                        <p class="text-gray-600 text-sm">Mezcla tus habilidades técnicas (Excel) con las humanas (Liderazgo).</p>
                     </div>
                 </div>
-
-                <div class="bg-red-50 p-8 rounded-2xl shadow-md border-l-8 border-red-500">
-                    <h3 class="text-2xl font-bold text-red-700 mb-4">⚠️ Errores que arruinan tu CV al instante</h3>
-                    <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 error-list">
-                        <li class="flex items-center text-red-800">❌ Faltas de ortografía (revisa dos veces antes de descargar).</li>
-                        <li class="flex items-center text-red-800">❌ Formatos PDF pesados que no pasan los filtros ATS.</li>
-                        <li class="flex items-center text-red-800">❌ Incluir información irrelevante de hace más de 15 años.</li>
-                        <li class="flex items-center text-red-800">❌ Fotos en baja calidad o con fondos informales.</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
-        <section class="pro-tips max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 bg-blue-600 p-12 rounded-3xl shadow-2xl text-white text-center md:text-left">
-            <h2 class="text-3xl font-bold mb-8 text-center text-blue-100">
-                Consejos de Experto para destacar en 2025
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-blue-700/50 p-6 rounded-xl">
-                    <h3 class="font-bold mb-2">Adapta tu CV</h3>
-                    <p class="text-blue-100 text-sm">Cada oferta de empleo es única. Modifica tus palabras clave para coincidir con la descripción del puesto y pasar los filtros automáticos.</p>
-                </div>
-                <div class="bg-blue-700/50 p-6 rounded-xl">
-                    <h3 class="font-bold mb-2">Sencillez = Éxito</h3>
-                    <p class="text-blue-100 text-sm">Un diseño limpio y bien estructurado siempre ganará a uno excesivamente decorado. La legibilidad es lo más importante.</p>
-                </div>
-                <div class="bg-blue-700/50 p-6 rounded-xl">
-                    <h3 class="font-bold mb-2">El PDF es Ley</h3>
-                    <p class="text-blue-100 text-sm">Nunca envíes tu CV en formato Word. El formato PDF garantiza que el reclutador lo vea exactamente como tú lo diseñaste.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="faq max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">
-                Preguntas frecuentes sobre nuestro creador de CV gratis
-            </h2>
-            <div class="space-y-6">
-                <details class="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 cursor-pointer">
-                    <summary class="font-bold text-xl text-primary flex justify-between items-center list-none">
-                        ¿Hay que pagar después de crear el CV?
-                        <span class="group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <p class="mt-4 text-gray-600 leading-relaxed">
-                        Es <strong>100% gratuito</strong>. A diferencia de otras plataformas web que te piden pagar 2€ o 15€ al finalizar, en MiCVGratis puedes diseñar y descargar tu PDF sin ningún tipo de coste oculto ni suscripciones.
-                    </p>
+        <section class="faq max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-10">Preguntas frecuentes</h2>
+            <div class="grid gap-4">
+                <details class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <summary class="font-bold text-xl text-primary flex justify-between">¿Es gratis de verdad? <span>▼</span></summary>
+                    <p class="mt-4 text-gray-600">Sí, 100% gratuito. Sin pagos al descargar, sin suscripciones.</p>
                 </details>
-                <details class="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 cursor-pointer">
-                    <summary class="font-bold text-xl text-primary flex justify-between items-center list-none">
-                        ¿Cómo se guardan mis datos personales?
-                        <span class="group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <p class="mt-4 text-gray-600">
-                        Tu privacidad es nuestra prioridad absoluta. Los datos que introduces se almacenan únicamente en el almacenamiento local de tu navegador (localStorage). <strong>Nada se envía a nuestros servidores</strong> ni se vende a terceros.
-                    </p>
-                </details>
-                <details class="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 cursor-pointer">
-                    <summary class="font-bold text-xl text-primary flex justify-between items-center list-none">
-                        ¿Las plantillas de CV son compatibles con ATS?
-                        <span class="group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <p class="mt-4 text-gray-600">
-                        Sí, nuestras plantillas de currículum gratis siguen una estructura jerárquica clara y técnica que permite a los sistemas de seguimiento de candidatos (ATS) extraer tu información académica y profesional sin errores.
-                    </p>
-                </details>
-                <details class="group bg-white p-6 rounded-2xl shadow-sm border border-gray-100 cursor-pointer">
-                    <summary class="font-bold text-xl text-primary flex justify-between items-center list-none">
-                        ¿Necesito registrarme para descargar mi currículum?
-                        <span class="group-open:rotate-180 transition-transform">▼</span>
-                    </summary>
-                    <p class="mt-4 text-gray-600 text-sm">
-                        No, no requerimos ningún tipo de registro ni cuenta. Entras, rellenas tus datos y descargas. Así de simple y rápido. Queremos que dediques tu tiempo a buscar empleo, no a gestionar cuentas de usuario.
-                    </p>
+                <details class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <summary class="font-bold text-xl text-primary flex justify-between">¿Mis datos están seguros? <span>▼</span></summary>
+                    <p class="mt-4 text-gray-600">Tus datos nunca salen de tu navegador. No guardamos nada en servidores.</p>
                 </details>
             </div>
         </section>
 
-        <section id="recursos" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
-            <h2 class="text-4xl font-black text-gray-800 mb-12 text-center italic">Recursos y Guías para crear un Currículum de éxito</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <div class="bg-white p-8 rounded-3xl shadow-lg border-b-4 border-primary flex flex-col hover:shadow-2xl transition">
-                    <div class="text-3xl mb-4" role="img" aria-label="Icono de robot representando filtros ATS para currículum">🤖</div>
-                    <h3 class="text-xl font-bold mb-3">Cómo superar los Filtros ATS</h3>
-                    <p class="text-gray-600 text-sm mb-6 flex-grow">Optimiza la estructura y el formato de tu CV para superar los sistemas ATS y llegar a los reclutadores.</p>
-                    <a href="guia-ats.html" target="_blank" title="Leer guía sobre formato de currículum ATS" class="bg-primary text-white text-center py-3 rounded-xl font-bold hover:bg-blue-700 transition">Leer Guía de Formato</a>
+        <section id="recursos" class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-black text-center mb-12 italic">Recursos y Guías</h2>
+            <div class="grid md:grid-cols-2">
+                <div class="bg-white p-8 rounded-3xl shadow-lg border-b-4 border-primary">
+                    <h3 class="text-xl font-bold mb-4">🤖 Superar Filtros ATS</h3>
+                    <a href="guia-ats.html" class="bg-primary text-white block text-center py-3 rounded-xl font-bold">Leer Guía</a>
                 </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-lg border-b-4 border-secondary flex flex-col hover:shadow-2xl transition">
-                    <div class="text-3xl mb-4" role="img" aria-label="Icono de pluma representando redacción de perfil profesional">✍️</div>
-                    <h3 class="text-xl font-bold mb-3">Guía del Perfil Profesional</h3>
-                    <p class="text-gray-600 text-sm mb-6 flex-grow">Cómo escribir un resumen ejecutivo impactante que capte la atención en menos de 5 segundos.</p>
-                    <a href="guia-perfil.html" title="Guía para redactar el perfil profesional del currículum" class="bg-secondary text-white text-center py-3 rounded-xl font-bold hover:bg-green-600 transition">Leer Guía de Redacción</a>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-lg border-b-4 border-purple-500 flex flex-col hover:shadow-2xl transition">
-                    <div class="text-3xl mb-4" role="img" aria-label="Icono de mundo representando idiomas y formación">🌍</div>
-                    <h3 class="text-xl font-bold mb-3">Idiomas en el Currículum</h3>
-                    <p class="text-gray-600 text-sm mb-6 flex-grow">Aprende a indicar tus niveles de idiomas correctamente siguiendo el marco europeo (A1 a C2).</p>
-                    <a href="guia-idiomas.html" title="Cómo poner los idiomas en el currículum" class="bg-purple-500 text-white text-center py-3 rounded-xl font-bold hover:bg-purple-600 transition">Leer Guía de Idiomas</a>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl shadow-lg border-b-4 border-orange-400 flex flex-col hover:shadow-2xl transition">
-                    <div class="text-3xl mb-4" role="img" aria-label="Icono de birrete representando currículum sin experiencia">🎓</div>
-                    <h3 class="text-xl font-bold mb-3">CV para perfiles sin experiencia</h3>
-                    <p class="text-gray-600 text-sm mb-6 flex-grow">Estrategias y plantillas para estudiantes o personas que buscan su primer empleo profesional.</p>
-                    <a href="guia-primer-cv.html" title="Guía para hacer un currículum sin experiencia" class="bg-orange-400 text-white text-center py-3 rounded-xl font-bold hover:bg-orange-500 transition">Leer Guía de Primer CV</a>
+                <div class="bg-white p-8 rounded-3xl shadow-lg border-b-4 border-secondary">
+                    <h3 class="text-xl font-bold mb-4">✍️ Perfil Profesional</h3>
+                    <a href="guia-perfil.html" class="bg-secondary text-white block text-center py-3 rounded-xl font-bold">Leer Guía</a>
                 </div>
             </div>
         </section>
 
-        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 mb-16">
-            <h2 class="text-3xl font-extrabold text-gray-800 mb-6 uppercase">
-                Consigue el trabajo que te mereces hoy mismo
-            </h2>
-            <a href="app.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-black text-3xl py-7 px-16 rounded-3xl shadow-2xl transform transition duration-300 hover:scale-110">
+        <section class="text-center mb-16">
+            <a href="app.html" class="btn-main bg-primary text-3xl shadow-2xl hover:scale-110">
                 ¡CREAR MI CV GRATIS!
             </a>
-            <p class="mt-6 text-gray-500 font-medium italic">Únete a más de 10,000 usuarios que ya confían en MiCVGratis mensualmente.</p>
         </section>
     </main>
 
-    <footer class="bg-gray-900 text-white mt-16 border-t-8 border-secondary">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-10">
-                <span class="text-3xl font-black tracking-tighter text-white">Mi<span class="text-secondary">CV</span>Gratis</span>
-                <p class="mt-2 text-gray-400">Impulsando carreras profesionales sin costes.</p>
+    <footer class="bg-gray-900 text-white border-t-8 border-secondary py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <span class="text-3xl font-black">Mi<span class="text-secondary">CV</span>Gratis</span>
+            <div class="mt-8 flex justify-center gap-6 text-sm text-gray-400">
+                <a href="politica-privacidad.html" class="hover:text-secondary">Privacidad</a>
+                <a href="contacto.html" class="hover:text-secondary">Contacto</a>
             </div>
-            <div class="footer-links text-sm flex flex-wrap justify-center gap-6 mb-10">
-                <a href="politica-privacidad.html" class="text-gray-400 hover:text-secondary transition underline-offset-4 hover:underline">Política de Privacidad</a>
-                <a href="terminos-servicio.html" class="text-gray-400 hover:text-secondary transition underline-offset-4 hover:underline">Términos de Servicio</a>
-                <a href="contacto.html" class="text-gray-400 hover:text-secondary transition underline-offset-4 hover:underline">Contacto y Soporte</a>
-                <a href="app.html" class="text-gray-400 hover:text-secondary transition underline-offset-4 hover:underline">Generador de CV</a>
-            </div>
-            <p class="text-xs text-gray-600">&copy; 2026 MiCVGratis. Todos los derechos reservados. Diseñado para maximizar tu empleabilidad y éxito profesional.</p>
+            <p class="mt-8 text-xs text-gray-600">&copy; 2026 MiCVGratis. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -335,14 +228,6 @@
                 }
             }
         }
-    </script>
-
-    <script>
-      if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
-          window.addEventListener('load', () => {
-              navigator.serviceWorker.register('/sw.js').catch(err => console.warn(err));
-          });
-      }
     </script>
 </body>
 </html>
