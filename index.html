@@ -6,12 +6,17 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" display="swap">
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
+    <style>
+        /* Estilo crítico para que la página no nazca "desnuda" */
+        html { scroll-behavior: smooth; background-color: #f9fafb; }
+        body { font-family: 'Inter', sans-serif; display: none; } /* Oculto hasta que Tailwind esté listo */
+        .ready body { display: block; }
+    </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -24,35 +29,11 @@
       "description": "El mejor creador de currículum vitae gratis online. Plantillas profesionales en PDF sin registro."
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "¿Hay que pagar después de crear el CV?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Es 100% gratuito..." }
-      }]
-    }
-    </script>
-
-    <style>
-        /* CSS Crítico: Para que la página no se vea blanca al cargar */
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; opacity: 0; } /* Ocultamos hasta que Tailwind cargue para evitar parpadeos */
-        .loaded body { opacity: 1; }
-        .benefits ul, .complete-guide ul { list-style: none; padding-left: 0; }
-        .benefits li, .complete-guide li { padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative; }
-        .benefits li::before, .complete-guide li::before { content: '✓'; position: absolute; left: 0; color: #10B981; font-weight: 700; }
-        .error-list li::before { content: none !important; }
-        .error-list li { padding-left: 0 !important; }
-    </style>
 
     <title>Generador de Currículum Vitae Gratis | PDF Profesional SIN Registro</title>
-    <meta name="description" content="🚀 Crea tu currículum vitae gratis en PDF ahora. Sin pagos ocultos, sin registros y en solo 5 minutos. Plantillas profesionales optimizadas para filtros ATS.">
-    
+    <meta name="description" content="🚀 Crea tu currículum vitae gratis en PDF ahora. Sin pagos ocultos, sin registros y en solo 5 minutos.">
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2453913628416113" crossorigin="anonymous"></script>
-    <meta name="google-adsense-account" content="ca-pub-2453913628416113">
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
     
@@ -350,7 +331,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+   <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -360,14 +341,16 @@
                 }
             }
         }
-        // Una vez que Tailwind procesa la página, la mostramos
-        document.documentElement.classList.add('loaded');
+        // Cuando Tailwind termina de procesar, mostramos la página
+        document.documentElement.classList.add('ready');
     </script>
 
     <script>
-      // Tu script del Service Worker (el que ya tienes)
+      // Tu Service Worker actual
       if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
-        // ... tu código actual del SW ...
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/sw.js').catch(err => console.warn(err));
+          });
       }
     </script>
 </body>
