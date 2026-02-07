@@ -6,32 +6,27 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" display="swap">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
     <style>
-        /* Estilo crítico para que la página no nazca "desnuda" */
-        html { scroll-behavior: smooth; background-color: #f9fafb; }
-        body { font-family: 'Inter', sans-serif; display: none; } /* Oculto hasta que Tailwind esté listo */
-        .ready body { display: block; }
+        :root { --primary: #2563EB; --secondary: #10B981; }
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; margin: 0; }
+        header { background: white; padding: 4rem 1rem; text-align: center; border-bottom: 1px solid #f3f4f6; }
+        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 1rem; font-weight: 900; }
+        .benefits ul, .complete-guide ul { list-style: none; padding-left: 0; }
+        .benefits li, .complete-guide li { padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative; }
+        .benefits li::before, .complete-guide li::before { content: '✓'; position: absolute; left: 0; color: #10B981; font-weight: 700; }
+        .error-list li::before { content: none !important; }
+        .error-list li { padding-left: 0 !important; }
     </style>
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "MiCVGratis",
-      "operatingSystem": "Web",
-      "applicationCategory": "BusinessApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "2450" },
-      "description": "El mejor creador de currículum vitae gratis online. Plantillas profesionales en PDF sin registro."
-    }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <title>Generador de Currículum Vitae Gratis | PDF Profesional SIN Registro</title>
-    <meta name="description" content="🚀 Crea tu currículum vitae gratis en PDF ahora. Sin pagos ocultos, sin registros y en solo 5 minutos.">
+    <meta name="description" content="🚀 Crea tu currículum vitae gratis en PDF ahora. Sin pagos ocultos, sin registros y en solo 5 minutos. Plantillas profesionales optimizadas para filtros ATS.">
+    <link rel="canonical" href="https://micvgratis.github.io/">
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2453913628416113" crossorigin="anonymous"></script>
 </head>
@@ -44,7 +39,7 @@
             </h1>
             
             <p class="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium">
-                Diseña tu <strong>CV profesional<strong> en PDF en 5 minutos. Sin registros, sin suscripciones ocultas y totalmente optimizado para filtros ATS.
+                Diseña tu <strong>CV profesional</strong> en PDF en 5 minutos. Sin registros, sin suscripciones ocultas y totalmente optimizado para filtros ATS.
             </p>
             
             <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
@@ -202,7 +197,6 @@
                         <li class="flex items-center text-red-800">❌ Fotos en baja calidad o con fondos informales.</li>
                     </ul>
                 </div>
-
             </div>
         </section>
 
@@ -327,11 +321,11 @@
                 <a href="contacto.html" class="text-gray-400 hover:text-secondary transition underline-offset-4 hover:underline">Contacto y Soporte</a>
                 <a href="app.html" class="text-gray-400 hover:text-secondary transition underline-offset-4 hover:underline">Generador de CV</a>
             </div>
-            <p class="text-xs text-gray-600">&copy; MiCVGratis. Todos los derechos reservados. Diseñado para maximizar tu empleabilidad y éxito profesional.</p>
+            <p class="text-xs text-gray-600">&copy; 2026 MiCVGratis. Todos los derechos reservados. Diseñado para maximizar tu empleabilidad y éxito profesional.</p>
         </div>
     </footer>
 
-   <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -341,12 +335,9 @@
                 }
             }
         }
-        // Cuando Tailwind termina de procesar, mostramos la página
-        document.documentElement.classList.add('ready');
     </script>
 
     <script>
-      // Tu Service Worker actual
       if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
           window.addEventListener('load', () => {
               navigator.serviceWorker.register('/sw.js').catch(err => console.warn(err));
