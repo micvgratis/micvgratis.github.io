@@ -5,25 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="google-adsense-account" content="ca-pub-2453913628416113"> 
 
-    <!-- 1. 🎯 TÍTULO OPTIMIZADO: Enfocado en la acción y la conversión -->
     <title>Empezar a Crear CV Online GRATIS | Generador Profesional y Rápido</title>
-    
-    <!-- 2. 🎯 META DESCRIPCIÓN OPTIMIZADA: Promueve la acción de crear ahora -->
     <meta name="description" content="Genera tu CV profesional online paso a paso de forma rápida y gratuita. ¡Empieza ahora con MiCVGratis y descarga tu currículum en PDF en minutos!">
     
-    <!-- 3. 🎯 ENLACE CANÓNICO (CRÍTICO): Define la URL oficial de la aplicación -->
     <link rel="canonical" href="https://micvgratis.github.io/app.html">
     
     <link rel="stylesheet" href="style.css" />
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2453913628416113"
       crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
-        <!-- 4. 🎯 H1 OPTIMIZADO: Centrado en la función principal del generador -->
         <h1>Creador de Currículum Online: ¡Empieza GRATIS!</h1>
+        
         <form id="cv-form">
-            <!-- ESTRUCTURA VERTICAL RESTAURADA -->
             <div class="form-group">
                 <label for="nombre">Nombre completo:</label>
                 <input type="text" id="nombre" name="nombre" required />
@@ -83,30 +79,34 @@
                 <label for="formacionAdicional">Formación Adicional (Opcional):</label>
                 <textarea id="formacionAdicional" name="formacionAdicional" rows="3"></textarea>
             </div>
+
             <div class="form-group">
-    <label for="idioma-cv">Idioma de los títulos del CV:</label>
-    <select id="idioma-cv" name="idioma-cv" style="width: 100%; padding: 12px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;">
-        <option value="es" selected>🇪🇸 Español</option>
-        <option value="en">🇺🇸 Inglés (English)</option>
-        <option value="fr">🇫🇷 Francés (Français)</option>
-        <option value="de">🇩🇪 Alemán (Deutsch)</option>
-        <option value="it">🇮🇹 Italiano (Italiano)</option>
-    </select>
-</div>
+                <label for="idioma-cv">Idioma de los títulos del CV:</label>
+                <select id="idioma-cv" name="idioma-cv" class="select-estilizado">
+                    <option value="es" selected>🇪🇸 Español</option>
+                    <option value="en">🇺🇸 Inglés (English)</option>
+                    <option value="fr">🇫🇷 Francés (Français)</option>
+                    <option value="de">🇩🇪 Alemán (Deutsch)</option>
+                    <option value="it">🇮🇹 Italiano (Italiano)</option>
+                </select>
+            </div>
+
             <div class="form-group">
-   <label for="diseno-cv" style="font-weight: bold; display: block; margin-top: 15px;">Elegir Diseño:</label>
-<select id="diseno-cv" name="diseno-cv" style="width: 100%; padding: 12px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;">
-    <option value="clasico">📜 Clásico (Tradicional)</option>
-    <option value="moderno" selected>🎨 Moderno</option>
-    <option value="minimalista">☁️ Minimalista (Limpio)</option>
-    <option value="harvard">🏛️ Harvard (Recomendado)</option>
-</select>
-</div>
+                <label for="diseno-cv">Elegir Diseño:</label>
+                <select id="diseno-cv" name="diseno-cv" class="select-estilizado">
+                    <option value="clasico">📜 Clásico (Tradicional)</option>
+                    <option value="moderno" selected>🎨 Moderno</option>
+                    <option value="minimalista">☁️ Minimalista (Limpio)</option>
+                    <option value="harvard">🏛️ Harvard (Recomendado)</option>
+                </select>
+            </div>
+
             <div class="botones">
                 <button type="submit">Generar Currículum</button>
                 <button type="button" id="descargar-pdf" style="display: none;">Descargar como PDF</button>
             </div>
         </form>
+
         <div id="resultado" class="resultado"></div>
     </div>
 
@@ -119,7 +119,6 @@
             <a href="politica-privacidad.html">Política de Privacidad</a> |
             <a href="terminos-servicio.html">Términos de Servicio</a> |
             <a href="contacto.html">Contacto</a> |
-            <!-- Se añade enlace de vuelta a la página principal por consistencia -->
             <a href="index.html">Página Principal</a>
         </div>
     </footer>
