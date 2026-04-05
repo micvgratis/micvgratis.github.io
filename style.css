@@ -164,9 +164,9 @@ footer {
   color: #007BFF;
   text-decoration: none;
 }
-/* --- Estilo para el botón de Limpiar --- */
-.btn-limpiar {
-    background-color: #6c757d; /* Gris profesional para diferenciarlo del azul de generar */
+/* --- Estilo para el botón de Limpiar (Corregido con mayor especificidad) --- */
+button.btn-limpiar {
+    background-color: #6c757d !important; /* El !important asegura que gane al azul general */
     color: white;
     padding: 12px 20px;
     border: none;
@@ -176,14 +176,14 @@ footer {
     transition: background-color 0.3s ease;
 }
 
-.btn-limpiar:hover {
-    background-color: #5a6268; /* Un gris más oscuro al pasar el ratón */
+button.btn-limpiar:hover {
+    background-color: #5a6268 !important;
 }
 
 /* Aseguramos que en móviles herede el comportamiento de los otros botones */
 @media (max-width: 600px) {
-    .btn-limpiar {
+    button.btn-limpiar {
         width: 100%;
-        margin-top: 5px; /* Pequeño espacio extra si se apilan */
+        margin-top: 5px;
     }
 }
