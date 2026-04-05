@@ -172,12 +172,15 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
 });
 // ==========================================
-// LÓGICA DE AUTOGUARDADO DEFINITIVA
+// LÓGICA DE AUTOGUARDADO DEFINITIVA CON BLOQUEO
 // ==========================================
 
 const KEY_LOCAL_STORAGE = 'micvgratis_cache';
+let isCleaning = false; // Bandera de seguridad
 
 const guardarProgreso = () => {
+    if (isCleaning) return; // Si estamos limpiando, NO guardamos nada
+
     const form = document.getElementById('cv-form');
     if (!form) return;
 
@@ -208,7 +211,6 @@ const cargarProgreso = () => {
     const form = document.getElementById('cv-form');
     if (!form) return;
 
-    // Rellenamos los campos con cuidado
     if (datos.nombre) form.nombre.value = datos.nombre;
     if (datos.email) form.email.value = datos.email;
     if (datos.telefono) form.telefono.value = datos.telefono;
@@ -225,46 +227,43 @@ const cargarProgreso = () => {
     if (datos.disenoCV) document.getElementById('diseno-cv').value = datos.disenoCV;
 };
 
-// Inicialización de eventos mejorada
+// Función de limpieza "A prueba de balas"
+function borrarTodoYReiniciar() {
+    if (confirm("¿Estás seguro de que quieres borrar todos los datos redactados?")) {
+        isCleaning = true; // ACTIVAMOS BLOQUEO
+        
+        // 1. Borramos localStorage inmediatamente
+        localStorage.removeItem(KEY_LOCAL_STORAGE);
+        localStorage.clear();
+
+        // 2. Vaciamos físicamente el formulario
+        const form = document.getElementById('cv-form');
+        if (form) form.reset();
+
+        // 3. Limpiamos la previsualización
+        const resultado = document.getElementById('resultado');
+        if (resultado) resultado.innerHTML = "";
+        document.getElementById('descargar-pdf').style.display = 'none';
+
+        // 4. Forzamos recarga ignorando la caché del navegador
+        window.location.href = window.location.pathname + "?v=" + Date.now();
+    }
+}
+
+// Inicialización de eventos
 document.addEventListener('DOMContentLoaded', () => {
     cargarProgreso();
 
     const form = document.getElementById('cv-form');
     if (form) {
-        // Guarda mientras escriben
         form.addEventListener('input', () => {
             clearTimeout(window.saveTimer);
             window.saveTimer = setTimeout(guardarProgreso, 500);
         });
 
-        // FUERZA EL GUARDADO AL CERRAR O SALIR (Solución al problema de cerrar pestaña)
-        window.addEventListener('beforeunload', guardarProgreso);
-        window.addEventListener('blur', guardarProgreso); // Guarda también si cambian de pestaña
+        // Guardar al cerrar o perder foco, excepto si estamos limpiando
+        window.addEventListener('beforeunload', () => {
+            if (!isCleaning) guardarProgreso();
+        });
     }
 });
-function borrarTodoYReiniciar() {
-    if (confirm("¿Estás seguro de que quieres borrar toda la información?")) {
-        // 1. Desactivamos el guardado automático temporalmente
-        window.removeEventListener('beforeunload', guardarProgreso);
-        
-        // 2. Limpiamos el localStorage
-        localStorage.removeItem('micvgratis_cache'); 
-        
-        // 3. Vaciamos el formulario visualmente
-        const form = document.getElementById('cv-form');
-        if (form) {
-            form.reset();
-            // Limpiamos manualmente cada campo por si el reset no llega a todo
-            const inputs = form.querySelectorAll('input, textarea');
-            inputs.forEach(input => input.value = '');
-        }
-        
-        // 4. Limpiamos el resultado visual del CV generado
-        const resultado = document.getElementById('resultado');
-        if (resultado) resultado.textContent = '';
-        document.getElementById('descargar-pdf').style.display = 'none';
-
-        // 5. Recargamos para limpiar cualquier variable global (como window.__cvData)
-        location.reload();
-    }
-}
