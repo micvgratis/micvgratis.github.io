@@ -45,13 +45,30 @@ document.getElementById('cv-form').addEventListener('submit', async function (ev
 });
 
 document.getElementById('descargar-pdf').addEventListener('click', function () {
-    // 1. Localizar la pantalla de carga
     const overlay = document.getElementById('loading-overlay');
+    const adWrapper = document.getElementById('ad-slot-wrapper');
     
-    // 2. Mostrar la pantalla de carga (Cambiamos 'none' por 'flex')
+    // 1. LIMPIAR E INYECTAR EL ANUNCIO (Para forzar a AdSense a despertar)
+    if (adWrapper) {
+        adWrapper.innerHTML = ''; // Limpiamos contenido previo
+        const ins = document.createElement('ins');
+        ins.className = 'adsbygoogle';
+        ins.style.display = 'inline-block';
+        ins.style.width = '300px';
+        ins.style.height = '250px';
+        ins.setAttribute('data-ad-client', 'ca-pub-2453913628416113');
+        ins.setAttribute('data-ad-slot', '8742196925');
+        adWrapper.appendChild(ins);
+        
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) { console.error("Error AdSense:", e); }
+    }
+
+    // 2. MOSTRAR LA PANTALLA DE CARGA
     overlay.style.display = 'flex';
 
-    // 3. Establecer una espera de 3 segundos antes de generar el PDF
+    // 3. ESPERA DE 6 SEGUNDOS (Tu código original de PDF va aquí dentro)
     setTimeout(() => {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
@@ -180,13 +197,11 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         addSection(t.idiomas, datos.idiomas);
         addSection(t.adicional, datos.formacionAdicional);
 
-        // 4. Guardar el PDF
+        // 4. GUARDAR PDF Y CERRAR OVERLAY
         doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
-
-        // 5. Ocultar la pantalla de carga para que el usuario pueda seguir en la web
         overlay.style.display = 'none';
 
-    }, 6000); // El 6000 son los milisegundos de espera (6 segundos)
+    }, 6000); 
 });
 
 // ==========================================
