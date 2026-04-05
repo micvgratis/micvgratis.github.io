@@ -186,7 +186,7 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         // 5. Ocultar la pantalla de carga para que el usuario pueda seguir en la web
         overlay.style.display = 'none';
 
-    }, 3000); // El 3000 son los milisegundos de espera (3 segundos)
+    }, 6000); // El 6000 son los milisegundos de espera (6 segundos)
 });
 
 // ==========================================
