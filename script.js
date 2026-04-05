@@ -243,15 +243,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 function borrarTodoYReiniciar() {
-    if (confirm("¿Estás seguro de que quieres borrar toda la información redactada?")) {
-        // 1. Borramos la memoria del navegador
+    if (confirm("¿Estás seguro de que quieres borrar toda la información?")) {
+        // 1. Desactivamos el guardado automático temporalmente
+        window.removeEventListener('beforeunload', guardarProgreso);
+        
+        // 2. Limpiamos el localStorage
         localStorage.removeItem('micvgratis_cache'); 
         
-        // 2. Opcional: Limpiamos los campos a mano por si el navegador intenta restaurarlos
+        // 3. Vaciamos el formulario visualmente
         const form = document.getElementById('cv-form');
-        if (form) form.reset();
+        if (form) {
+            form.reset();
+            // Limpiamos manualmente cada campo por si el reset no llega a todo
+            const inputs = form.querySelectorAll('input, textarea');
+            inputs.forEach(input => input.value = '');
+        }
         
-        // 3. Recargamos la página para limpiar el estado interno del script
+        // 4. Limpiamos el resultado visual del CV generado
+        const resultado = document.getElementById('resultado');
+        if (resultado) resultado.textContent = '';
+        document.getElementById('descargar-pdf').style.display = 'none';
+
+        // 5. Recargamos para limpiar cualquier variable global (como window.__cvData)
         location.reload();
     }
 }
