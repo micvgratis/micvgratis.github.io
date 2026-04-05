@@ -172,12 +172,11 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
 });
 // ==========================================
-// LÓGICA DE AUTOGUARDADO (MiCVGratis)
+// LÓGICA DE AUTOGUARDADO DEFINITIVA
 // ==========================================
 
 const KEY_LOCAL_STORAGE = 'micvgratis_cache';
 
-// 1. Función para guardar los datos
 const guardarProgreso = () => {
     const form = document.getElementById('cv-form');
     if (!form) return;
@@ -201,7 +200,6 @@ const guardarProgreso = () => {
     localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(datos));
 };
 
-// 2. Función para cargar los datos al iniciar
 const cargarProgreso = () => {
     const datosJSON = localStorage.getItem(KEY_LOCAL_STORAGE);
     if (!datosJSON) return;
@@ -210,7 +208,7 @@ const cargarProgreso = () => {
     const form = document.getElementById('cv-form');
     if (!form) return;
 
-    // Rellenamos cada campo si existe en el almacenamiento
+    // Rellenamos los campos con cuidado
     if (datos.nombre) form.nombre.value = datos.nombre;
     if (datos.email) form.email.value = datos.email;
     if (datos.telefono) form.telefono.value = datos.telefono;
@@ -223,33 +221,24 @@ const cargarProgreso = () => {
     if (datos.idiomas) form.idiomas.value = datos.idiomas;
     if (datos.formacionAdicional) form.formacionAdicional.value = datos.formacionAdicional;
     
-    // Selectores de idioma y diseño
     if (datos.idiomaCV) document.getElementById('idioma-cv').value = datos.idiomaCV;
     if (datos.disenoCV) document.getElementById('diseno-cv').value = datos.disenoCV;
-
-    console.log("Datos de sesión anterior restaurados.");
 };
 
-// 3. Inicialización de eventos
+// Inicialización de eventos mejorada
 document.addEventListener('DOMContentLoaded', () => {
-    // Cargar datos al entrar
     cargarProgreso();
 
-    // Guardar datos cuando el usuario escriba o cambie algo
     const form = document.getElementById('cv-form');
     if (form) {
+        // Guarda mientras escriben
         form.addEventListener('input', () => {
-            // Usamos un pequeño retraso (debounce) para no saturar el navegador
             clearTimeout(window.saveTimer);
             window.saveTimer = setTimeout(guardarProgreso, 500);
         });
+
+        // FUERZA EL GUARDADO AL CERRAR O SALIR (Solución al problema de cerrar pestaña)
+        window.addEventListener('beforeunload', guardarProgreso);
+        window.addEventListener('blur', guardarProgreso); // Guarda también si cambian de pestaña
     }
 });
-
-// Función extra: Por si quieres añadir un botón de "Borrar todo" en el HTML
-function borrarTodoYReiniciar() {
-    if (confirm("¿Quieres borrar toda la información redactada?")) {
-        localStorage.removeItem(KEY_LOCAL_STORAGE);
-        location.reload();
-    }
-}
