@@ -45,142 +45,148 @@ document.getElementById('cv-form').addEventListener('submit', async function (ev
 });
 
 document.getElementById('descargar-pdf').addEventListener('click', function () {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const datos = window.__cvData;
-    const t = diccionarios[datos.idioma || 'es'];
-    const selector = document.getElementById('diseno-cv');
-    const diseno = selector ? selector.value : 'clasico';
+    // 1. Localizar la pantalla de carga
+    const overlay = document.getElementById('loading-overlay');
     
-    let margin = 20;
-    let y = margin;
-    const maxWidth = 170;
+    // 2. Mostrar la pantalla de carga (Cambiamos 'none' por 'flex')
+    overlay.style.display = 'flex';
 
-    // --- CONFIGURACIÓN DE FUENTES Y TAMAÑOS ATS ---
-    let r = 0, g = 51, b = 102; 
-    let fuentePrincipal = 'helvetica'; // Sans-Serif (Recomendado por Google)
-    let tamanoCuerpo = 11;             // Entre 10 y 12pt
-    let tamanoTitulos = 13;            // Legible y jerarquizado
-    let tamanoNombre = 20;
+    // 3. Establecer una espera de 3 segundos antes de generar el PDF
+    setTimeout(() => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const datos = window.__cvData;
+        const t = diccionarios[datos.idioma || 'es'];
+        const selector = document.getElementById('diseno-cv');
+        const diseno = selector ? selector.value : 'clasico';
+        
+        let margin = 20;
+        let y = margin;
+        const maxWidth = 170;
 
-    if (diseno === 'moderno') {
-        r = 37; g = 99; b = 235; 
-    } else if (diseno === 'minimalista' || diseno === 'harvard') {
-        r = 0; g = 0; b = 0;
+        // --- CONFIGURACIÓN DE FUENTES Y TAMAÑOS ATS ---
+        let r = 0, g = 51, b = 102; 
+        let fuentePrincipal = 'helvetica'; 
+        let tamanoCuerpo = 11;             
+        let tamanoTitulos = 13;            
+        let tamanoNombre = 20;
+
+        if (diseno === 'moderno') {
+            r = 37; g = 99; b = 235; 
+        } else if (diseno === 'minimalista' || diseno === 'harvard') {
+            r = 0; g = 0; b = 0;
+            if (diseno === 'harvard') {
+                fuentePrincipal = 'times'; 
+                tamanoCuerpo = 10;
+                tamanoTitulos = 12;
+            }
+        }
+
+        // --- ENCABEZADO ---
+        doc.setTextColor(r, g, b); 
         if (diseno === 'harvard') {
-            fuentePrincipal = 'times'; // Serif estándar aceptada
-            tamanoCuerpo = 10;
-            tamanoTitulos = 12;
-        }
-    }
-
-    // --- ENCABEZADO ---
-    doc.setTextColor(r, g, b); 
-    
-    if (diseno === 'harvard') {
-        doc.setFont('times', 'bold');
-        doc.setFontSize(18);
-        doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
-        y += 7;
-        doc.setFontSize(10);
-        doc.setFont('times', 'normal');
-        doc.setTextColor(50, 50, 50);
-        let contactInfo = `${datos.email} | ${datos.telefono} | ${datos.ciudad}, ${datos.pais}`;
-        doc.text(contactInfo, doc.internal.pageSize.width / 2, y, { align: 'center' });
-    } else {
-        doc.setFont('helvetica', 'bold');
-        doc.setFontSize(tamanoNombre);
-        if (diseno === 'moderno') {
+            doc.setFont('times', 'bold');
+            doc.setFontSize(18);
             doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
-        } else {
-            doc.text(datos.nombre, margin, y);
-        }
-        y += 8;
-        doc.setFontSize(tamanoCuerpo);
-        doc.setTextColor(80, 80, 80);
-        doc.setFont('helvetica', 'normal');
-        let contactInfo = `Email: ${datos.email} | Teléfono: ${datos.telefono}`;
-        if (datos.ciudad || datos.pais) {
-            contactInfo += ` | ${datos.ciudad || ''}${datos.ciudad && datos.pais ? ', ' : ''}${datos.pais || ''}`;
-        }
-        if (diseno === 'moderno') {
+            y += 7;
+            doc.setFontSize(10);
+            doc.setFont('times', 'normal');
+            doc.setTextColor(50, 50, 50);
+            let contactInfo = `${datos.email} | ${datos.telefono} | ${datos.ciudad}, ${datos.pais}`;
             doc.text(contactInfo, doc.internal.pageSize.width / 2, y, { align: 'center' });
         } else {
-            doc.text(contactInfo, margin, y);
-        }
-    }
-
-    // Foto (Solo si no es Harvard)
-    if (datos.foto && diseno !== 'harvard') {
-        try {
-            const imgSize = 25; // Reducida un poco para no desplazar texto
-            const xFoto = (diseno === 'moderno') ? margin : doc.internal.pageSize.width - margin - imgSize;
-            doc.addImage(datos.foto, 'JPEG', xFoto, margin - 10, imgSize, imgSize);
-        } catch (e) { console.error("Error foto:", e); }
-    }
-
-    y += 10;
-    doc.setDrawColor(200, 200, 200);
-    doc.line(margin, y, 190, y);
-    y += 10;
-
-    // --- FUNCIÓN DE SECCIONES OPTIMIZADA ---
-    function addSection(title, text, isBullet = false) {
-        if (!text || !text.trim()) return;
-        if (y + 25 > doc.internal.pageSize.height - margin) {
-            doc.addPage();
-            y = margin;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(tamanoNombre);
+            if (diseno === 'moderno') {
+                doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
+            } else {
+                doc.text(datos.nombre, margin, y);
+            }
+            y += 8;
+            doc.setFontSize(tamanoCuerpo);
+            doc.setTextColor(80, 80, 80);
+            doc.setFont('helvetica', 'normal');
+            let contactInfo = `Email: ${datos.email} | Teléfono: ${datos.telefono}`;
+            if (datos.ciudad || datos.pais) {
+                contactInfo += ` | ${datos.ciudad || ''}${datos.ciudad && datos.pais ? ', ' : ''}${datos.pais || ''}`;
+            }
+            if (diseno === 'moderno') {
+                doc.text(contactInfo, doc.internal.pageSize.width / 2, y, { align: 'center' });
+            } else {
+                doc.text(contactInfo, margin, y);
+            }
         }
 
-        // Títulos en Negrita (Sin cursivas para evitar errores de lectura ATS)
-        doc.setFont(fuentePrincipal, 'bold');
-        doc.setFontSize(tamanoTitulos);
-        doc.setTextColor(r, g, b); 
-        const label = (diseno === 'clasico' || diseno === 'harvard') ? title.toUpperCase() : title;
-        doc.text(label, margin, y);
-        
-        if(diseno === 'harvard') {
-            y += 2;
-            doc.setDrawColor(0, 0, 0);
-            doc.setLineWidth(0.2);
-            doc.line(margin, y, 190, y);
-            y += 5;
-        } else {
-            y += 7;
+        // Foto (Solo si no es Harvard)
+        if (datos.foto && diseno !== 'harvard') {
+            try {
+                const imgSize = 25; 
+                const xFoto = (diseno === 'moderno') ? margin : doc.internal.pageSize.width - margin - imgSize;
+                doc.addImage(datos.foto, 'JPEG', xFoto, margin - 10, imgSize, imgSize);
+            } catch (e) { console.error("Error foto:", e); }
         }
 
-        // Cuerpo en Normal
-        doc.setFont(fuentePrincipal, 'normal');
-        doc.setFontSize(tamanoCuerpo);
-        doc.setTextColor(50, 50, 50);
+        y += 10;
+        doc.setDrawColor(200, 200, 200);
+        doc.line(margin, y, 190, y);
+        y += 10;
 
-        if (isBullet) {
-            const lines = text.split('\n');
-            lines.forEach(line => {
-                if (line.trim()) {
-                    // Viñeta simple (guion) es la más segura para ATS
-                    const bullet = "- "; 
-                    const splitLine = doc.splitTextToSize(bullet + line.trim(), maxWidth);
-                    doc.text(splitLine, margin, y);
-                    y += splitLine.length * (tamanoCuerpo * 0.5) + (diseno === 'harvard' ? 1.5 : 2);
-                }
-            });
-            y += 2;
-        } else {
-            const lines = doc.splitTextToSize(text, maxWidth);
-            doc.text(lines, margin, y);
-            y += lines.length * (tamanoCuerpo * 0.5) + 4;
+        function addSection(title, text, isBullet = false) {
+            if (!text || !text.trim()) return;
+            if (y + 25 > doc.internal.pageSize.height - margin) {
+                doc.addPage();
+                y = margin;
+            }
+            doc.setFont(fuentePrincipal, 'bold');
+            doc.setFontSize(tamanoTitulos);
+            doc.setTextColor(r, g, b); 
+            const label = (diseno === 'clasico' || diseno === 'harvard') ? title.toUpperCase() : title;
+            doc.text(label, margin, y);
+            
+            if(diseno === 'harvard') {
+                y += 2;
+                doc.setDrawColor(0, 0, 0);
+                doc.setLineWidth(0.2);
+                doc.line(margin, y, 190, y);
+                y += 5;
+            } else { y += 7; }
+
+            doc.setFont(fuentePrincipal, 'normal');
+            doc.setFontSize(tamanoCuerpo);
+            doc.setTextColor(50, 50, 50);
+
+            if (isBullet) {
+                const lines = text.split('\n');
+                lines.forEach(line => {
+                    if (line.trim()) {
+                        const bullet = "- "; 
+                        const splitLine = doc.splitTextToSize(bullet + line.trim(), maxWidth);
+                        doc.text(splitLine, margin, y);
+                        y += splitLine.length * (tamanoCuerpo * 0.5) + (diseno === 'harvard' ? 1.5 : 2);
+                    }
+                });
+                y += 2;
+            } else {
+                const lines = doc.splitTextToSize(text, maxWidth);
+                doc.text(lines, margin, y);
+                y += lines.length * (tamanoCuerpo * 0.5) + 4;
+            }
         }
-    }
 
-    addSection(t.perfil, datos.perfil);
-    addSection(t.experiencia, datos.experiencia, true);
-    addSection(t.educacion, datos.educacion, true);
-    addSection(t.habilidades, datos.habilidades, true);
-    addSection(t.idiomas, datos.idiomas);
-    addSection(t.adicional, datos.formacionAdicional);
+        addSection(t.perfil, datos.perfil);
+        addSection(t.experiencia, datos.experiencia, true);
+        addSection(t.educacion, datos.educacion, true);
+        addSection(t.habilidades, datos.habilidades, true);
+        addSection(t.idiomas, datos.idiomas);
+        addSection(t.adicional, datos.formacionAdicional);
 
-    doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
+        // 4. Guardar el PDF
+        doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
+
+        // 5. Ocultar la pantalla de carga para que el usuario pueda seguir en la web
+        overlay.style.display = 'none';
+
+    }, 3000); // El 3000 son los milisegundos de espera (3 segundos)
 });
 
 // ==========================================
