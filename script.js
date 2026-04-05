@@ -242,3 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('blur', guardarProgreso); // Guarda también si cambian de pestaña
     }
 });
+// Función para borrar los datos guardados y resetear el formulario
+function borrarTodoYReiniciar() {
+    if (confirm("¿Estás seguro de que quieres borrar toda la información redactada? Esta acción no se puede deshacer.")) {
+        localStorage.removeItem('micvgratis_cache'); // Borra el autoguardado
+        location.reload(); // Recarga la página para vaciar los campos
+    }
+}
