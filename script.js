@@ -242,10 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('blur', guardarProgreso); // Guarda también si cambian de pestaña
     }
 });
-// Función para borrar los datos guardados y resetear el formulario
 function borrarTodoYReiniciar() {
-    if (confirm("¿Estás seguro de que quieres borrar toda la información redactada? Esta acción no se puede deshacer.")) {
-        localStorage.removeItem('micvgratis_cache'); // Borra el autoguardado
-        location.reload(); // Recarga la página para vaciar los campos
+    if (confirm("¿Estás seguro de que quieres borrar toda la información redactada?")) {
+        // 1. Borramos la memoria del navegador
+        localStorage.removeItem('micvgratis_cache'); 
+        
+        // 2. Opcional: Limpiamos los campos a mano por si el navegador intenta restaurarlos
+        const form = document.getElementById('cv-form');
+        if (form) form.reset();
+        
+        // 3. Recargamos la página para limpiar el estado interno del script
+        location.reload();
     }
 }
