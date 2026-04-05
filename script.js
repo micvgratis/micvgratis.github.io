@@ -171,3 +171,85 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
 
     doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
 });
+// ==========================================
+// LÓGICA DE AUTOGUARDADO (MiCVGratis)
+// ==========================================
+
+const KEY_LOCAL_STORAGE = 'micvgratis_cache';
+
+// 1. Función para guardar los datos
+const guardarProgreso = () => {
+    const form = document.getElementById('cv-form');
+    if (!form) return;
+
+    const datos = {
+        nombre: form.nombre.value,
+        email: form.email.value,
+        telefono: form.telefono.value,
+        ciudad: form.ciudad.value,
+        pais: form.pais.value,
+        perfil: form.perfil.value,
+        experiencia: form.experiencia.value,
+        educacion: form.educacion.value,
+        habilidades: form.habilidades.value,
+        idiomas: form.idiomas.value,
+        formacionAdicional: form.formacionAdicional.value,
+        idiomaCV: document.getElementById('idioma-cv').value,
+        disenoCV: document.getElementById('diseno-cv').value
+    };
+
+    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(datos));
+};
+
+// 2. Función para cargar los datos al iniciar
+const cargarProgreso = () => {
+    const datosJSON = localStorage.getItem(KEY_LOCAL_STORAGE);
+    if (!datosJSON) return;
+
+    const datos = JSON.parse(datosJSON);
+    const form = document.getElementById('cv-form');
+    if (!form) return;
+
+    // Rellenamos cada campo si existe en el almacenamiento
+    if (datos.nombre) form.nombre.value = datos.nombre;
+    if (datos.email) form.email.value = datos.email;
+    if (datos.telefono) form.telefono.value = datos.telefono;
+    if (datos.ciudad) form.ciudad.value = datos.ciudad;
+    if (datos.pais) form.pais.value = datos.pais;
+    if (datos.perfil) form.perfil.value = datos.perfil;
+    if (datos.experiencia) form.experiencia.value = datos.experiencia;
+    if (datos.educacion) form.educacion.value = datos.educacion;
+    if (datos.habilidades) form.habilidades.value = datos.habilidades;
+    if (datos.idiomas) form.idiomas.value = datos.idiomas;
+    if (datos.formacionAdicional) form.formacionAdicional.value = datos.formacionAdicional;
+    
+    // Selectores de idioma y diseño
+    if (datos.idiomaCV) document.getElementById('idioma-cv').value = datos.idiomaCV;
+    if (datos.disenoCV) document.getElementById('diseno-cv').value = datos.disenoCV;
+
+    console.log("Datos de sesión anterior restaurados.");
+};
+
+// 3. Inicialización de eventos
+document.addEventListener('DOMContentLoaded', () => {
+    // Cargar datos al entrar
+    cargarProgreso();
+
+    // Guardar datos cuando el usuario escriba o cambie algo
+    const form = document.getElementById('cv-form');
+    if (form) {
+        form.addEventListener('input', () => {
+            // Usamos un pequeño retraso (debounce) para no saturar el navegador
+            clearTimeout(window.saveTimer);
+            window.saveTimer = setTimeout(guardarProgreso, 500);
+        });
+    }
+});
+
+// Función extra: Por si quieres añadir un botón de "Borrar todo" en el HTML
+function borrarTodoYReiniciar() {
+    if (confirm("¿Quieres borrar toda la información redactada?")) {
+        localStorage.removeItem(KEY_LOCAL_STORAGE);
+        location.reload();
+    }
+}
