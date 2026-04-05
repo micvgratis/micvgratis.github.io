@@ -56,17 +56,25 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     let y = margin;
     const maxWidth = 170;
 
+    // --- CONFIGURACIÓN DE FUENTES Y TAMAÑOS ATS ---
     let r = 0, g = 51, b = 102; 
-    let fuentePrincipal = 'helvetica';
+    let fuentePrincipal = 'helvetica'; // Sans-Serif (Recomendado por Google)
+    let tamanoCuerpo = 11;             // Entre 10 y 12pt
+    let tamanoTitulos = 13;            // Legible y jerarquizado
+    let tamanoNombre = 20;
 
     if (diseno === 'moderno') {
         r = 37; g = 99; b = 235; 
     } else if (diseno === 'minimalista' || diseno === 'harvard') {
         r = 0; g = 0; b = 0;
-        if (diseno === 'harvard') fuentePrincipal = 'times';
+        if (diseno === 'harvard') {
+            fuentePrincipal = 'times'; // Serif estándar aceptada
+            tamanoCuerpo = 10;
+            tamanoTitulos = 12;
+        }
     }
 
-    // --- BLOQUE AÑADIDO: ENCABEZADO (DIBUJAR PRIMERO) ---
+    // --- ENCABEZADO ---
     doc.setTextColor(r, g, b); 
     
     if (diseno === 'harvard') {
@@ -81,14 +89,14 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         doc.text(contactInfo, doc.internal.pageSize.width / 2, y, { align: 'center' });
     } else {
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(22);
+        doc.setFontSize(tamanoNombre);
         if (diseno === 'moderno') {
             doc.text(datos.nombre.toUpperCase(), doc.internal.pageSize.width / 2, y, { align: 'center' });
         } else {
             doc.text(datos.nombre, margin, y);
         }
         y += 8;
-        doc.setFontSize(11);
+        doc.setFontSize(tamanoCuerpo);
         doc.setTextColor(80, 80, 80);
         doc.setFont('helvetica', 'normal');
         let contactInfo = `Email: ${datos.email} | Teléfono: ${datos.telefono}`;
@@ -102,9 +110,10 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
         }
     }
 
+    // Foto (Solo si no es Harvard)
     if (datos.foto && diseno !== 'harvard') {
         try {
-            const imgSize = 30;
+            const imgSize = 25; // Reducida un poco para no desplazar texto
             const xFoto = (diseno === 'moderno') ? margin : doc.internal.pageSize.width - margin - imgSize;
             doc.addImage(datos.foto, 'JPEG', xFoto, margin - 10, imgSize, imgSize);
         } catch (e) { console.error("Error foto:", e); }
@@ -115,7 +124,7 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
     doc.line(margin, y, 190, y);
     y += 10;
 
-    // --- FUNCIÓN MOVIDA AQUÍ PARA QUE EL FLUJO SEA CORRECTO ---
+    // --- FUNCIÓN DE SECCIONES OPTIMIZADA ---
     function addSection(title, text, isBullet = false) {
         if (!text || !text.trim()) return;
         if (y + 25 > doc.internal.pageSize.height - margin) {
@@ -123,8 +132,9 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
             y = margin;
         }
 
+        // Títulos en Negrita (Sin cursivas para evitar errores de lectura ATS)
         doc.setFont(fuentePrincipal, 'bold');
-        doc.setFontSize(diseno === 'harvard' ? 12 : 14);
+        doc.setFontSize(tamanoTitulos);
         doc.setTextColor(r, g, b); 
         const label = (diseno === 'clasico' || diseno === 'harvard') ? title.toUpperCase() : title;
         doc.text(label, margin, y);
@@ -139,29 +149,30 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
             y += 7;
         }
 
+        // Cuerpo en Normal
         doc.setFont(fuentePrincipal, 'normal');
-        doc.setFontSize(diseno === 'harvard' ? 10 : 11);
+        doc.setFontSize(tamanoCuerpo);
         doc.setTextColor(50, 50, 50);
 
         if (isBullet) {
             const lines = text.split('\n');
             lines.forEach(line => {
                 if (line.trim()) {
-                    const bullet = (diseno === 'minimalista' || diseno === 'harvard') ? "- " : "• ";
+                    // Viñeta simple (guion) es la más segura para ATS
+                    const bullet = "- "; 
                     const splitLine = doc.splitTextToSize(bullet + line.trim(), maxWidth);
                     doc.text(splitLine, margin, y);
-                    y += splitLine.length * (diseno === 'harvard' ? 5 : 6);
+                    y += splitLine.length * (tamanoCuerpo * 0.5) + (diseno === 'harvard' ? 1.5 : 2);
                 }
             });
             y += 2;
         } else {
             const lines = doc.splitTextToSize(text, maxWidth);
             doc.text(lines, margin, y);
-            y += lines.length * (diseno === 'harvard' ? 5: 6) + 4;
+            y += lines.length * (tamanoCuerpo * 0.5) + 4;
         }
     }
 
-    // --- LLAMADAS MOVIDAS AL FINAL (EL ORDEN DE LECTURA ATS SERÁ PERFECTO) ---
     addSection(t.perfil, datos.perfil);
     addSection(t.experiencia, datos.experiencia, true);
     addSection(t.educacion, datos.educacion, true);
@@ -171,6 +182,7 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
 
     doc.save(`CV_${datos.nombre.replace(/\s+/g, '_')}.pdf`);
 });
+
 // ==========================================
 // LÓGICA DE AUTOGUARDADO DEFINITIVA CON BLOQUEO
 // ==========================================
