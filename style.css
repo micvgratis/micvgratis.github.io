@@ -187,3 +187,53 @@ button.btn-limpiar:hover {
         margin-top: 5px;
     }
 }
+/* ==================================== */
+/* --- SOLUCIÓN PARA LA DESCARGA DE PDF --- */
+/* ==================================== */
+
+/* 1. Ajustes generales para cuando se genera el PDF o se imprime */
+@media print {
+  /* Ocultamos los elementos que no deben salir en el currículum (formulario, botones, footer) */
+  body > *:not(#resultado) {
+    display: none !important;
+  }
+
+  /* El contenedor del resultado ocupa toda la hoja sin restricciones */
+  body, html {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+  }
+
+  #resultado {
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    display: block !important;
+  }
+
+  /* 2. Evitar que las secciones o bloques de texto se corten a la mitad en los saltos de página */
+  .cv-section, 
+  .cv-section-content, 
+  .form-group {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* 3. Forzar saltos de página limpios si una sección es muy larga */
+  h2, .cv-section-title {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+}
+
+/* 4. Asegurar que en pantalla normal el resultado no oculte contenido largo */
+#resultado {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
