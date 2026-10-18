@@ -150,43 +150,67 @@ document.getElementById('descargar-pdf').addEventListener('click', function () {
 
         function addSection(title, text, isBullet = false) {
             if (!text || !text.trim()) return;
-            if (y + 25 > doc.internal.pageSize.height - margin) {
+
+            const bottomLimit = doc.internal.pageSize.height - margin;
+
+            // 1. Validar espacio para el título de la sección
+            if (y + 15 > bottomLimit) {
                 doc.addPage();
                 y = margin;
             }
+
             doc.setFont(fuentePrincipal, 'bold');
             doc.setFontSize(tamanoTitulos);
             doc.setTextColor(r, g, b); 
             const label = (diseno === 'clasico' || diseno === 'harvard') ? title.toUpperCase() : title;
             doc.text(label, margin, y);
             
-            if(diseno === 'harvard') {
+            if (diseno === 'harvard') {
                 y += 2;
                 doc.setDrawColor(0, 0, 0);
                 doc.setLineWidth(0.2);
                 doc.line(margin, y, 190, y);
                 y += 5;
-            } else { y += 7; }
+            } else { 
+                y += 7; 
+            }
 
             doc.setFont(fuentePrincipal, 'normal');
             doc.setFontSize(tamanoCuerpo);
             doc.setTextColor(50, 50, 50);
 
+            const lineHeight = tamanoCuerpo * 0.5;
+
+            // 2. Control inteligente de saltos de página línea por línea
             if (isBullet) {
-                const lines = text.split('\n');
-                lines.forEach(line => {
-                    if (line.trim()) {
+                const items = text.split('\n');
+                items.forEach(item => {
+                    if (item.trim()) {
                         const bullet = "- "; 
-                        const splitLine = doc.splitTextToSize(bullet + line.trim(), maxWidth);
+                        const splitLine = doc.splitTextToSize(bullet + item.trim(), maxWidth);
+                        const blockHeight = splitLine.length * lineHeight + (diseno === 'harvard' ? 1.5 : 2);
+                        
+                        if (y + blockHeight > bottomLimit) {
+                            doc.addPage();
+                            y = margin;
+                        }
+
                         doc.text(splitLine, margin, y);
-                        y += splitLine.length * (tamanoCuerpo * 0.5) + (diseno === 'harvard' ? 1.5 : 2);
+                        y += blockHeight;
                     }
                 });
                 y += 2;
             } else {
                 const lines = doc.splitTextToSize(text, maxWidth);
-                doc.text(lines, margin, y);
-                y += lines.length * (tamanoCuerpo * 0.5) + 4;
+                lines.forEach(line => {
+                    if (y + lineHeight > bottomLimit) {
+                        doc.addPage();
+                        y = margin;
+                    }
+                    doc.text(line, margin, y);
+                    y += lineHeight;
+                });
+                y += 4;
             }
         }
 
